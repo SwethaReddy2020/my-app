@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from './login.service';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
+import { AuthenticationService } from '../core/services/authentication.service';
+import { NotificationService } from '../core/services/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -8,20 +12,56 @@ import { LoginService } from './login.service';
   styleUrls: ['./login.component.sass']
 })
 export class LoginComponent implements OnInit {
-  email: string = '';
-  password: string = '';
+  loginForm!: UntypedFormGroup;
+  loading!: boolean;
 
-  constructor(private route: Router, private loginService: LoginService) {}
+  constructor(private router: Router,
+      private titleService: Title,
+      private notificationService: NotificationService,
+      private authenticationService: AuthenticationService) {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit() {
+      this.titleService.setTitle('angular-material-template - Login');
+      this.authenticationService.logout();
+      this.createForm();
+  }
+
+  private createForm() {
+      const savedUserEmail = localStorage.getItem('savedUserEmail');
+
+      this.loginForm = new UntypedFormGroup({
+          email: new UntypedFormControl(savedUserEmail, [Validators.required, Validators.email]),
+          password: new UntypedFormControl('', Validators.required),
+          rememberMe: new UntypedFormControl(savedUserEmail !== null)
+      });
+  }
 
   login() {
-    if(this.loginService.login(this.email, this.password)) {
-      this.loginService.getUsers().subscribe((data) => {
-        console.log(data)
-      }
+      const email = this.loginForm.get('email')?.value;
+      const password = this.loginForm.get('password')?.value;
+      const rememberMe = this.loginForm.get('rememberMe')?.value;
 
-      );
-    }
+      this.loading = true;
+      this.authenticationService
+          .login(email.toLowerCase(), password)
+          .subscribe(
+              data => {
+                  if (rememberMe) {
+                      localStorage.setItem('savedUserEmail', email);
+                  } else {
+                      localStorage.removeItem('savedUserEmail');
+                  }
+                  this.router.navigate(['/']);
+              },
+              error => {
+                  this.notificationService.openSnackBar(error.error);
+                  this.loading = false;
+              }
+          );
+  }
+
+  resetPassword() {
+      this.router.navigate(['/auth/password-reset-request']);
   }
 }
