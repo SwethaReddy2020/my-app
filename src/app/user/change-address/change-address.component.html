@@ -1,0 +1,67 @@
+<form [formGroup]="form">  
+    <div fxLayout="row">
+  
+      <div fxFlex="40%" fxFlex.md="60%" fxFlex.sm="50%" fxFlex.xs="100%">
+        <mat-form-field>
+            <input
+              type="text"
+              matInput
+              formControlName="addressLine1"
+              placeholder="Address Line1"
+            />
+            <mat-error
+              *ngIf="
+              form.get('addressLine1')?.hasError('required')
+              "
+            >
+              Address Line1 is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+  
+          <mat-form-field>
+            <input
+              type="text"
+              matInput
+              formControlName="addressLine2"
+              placeholder="Address Line2"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              type="text"
+              matInput
+              formControlName="city"
+              placeholder="City"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              type="text"
+              matInput
+              formControlName="state"
+              placeholder="State"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              type="text"
+              matInput
+              formControlName="country"
+              placeholder="Country"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              type="text"
+              matInput
+              formControlName="zipCode"
+              placeholder="Pin Codes"
+            />
+          </mat-form-field>
+        <button mat-raised-button color="primary" [disabled]="form.invalid || disableSubmit" (click)="updateAddress()">Save</button>
+  
+      </div>
+  
+    </div>
+  
+  </form>

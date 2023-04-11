@@ -1,0 +1,16 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+.navbar-container {
+  height: 90vh;
+  flex: 1;
+}
+
+
+
+mat-drawer {
+  min-width: 180px !important;
+  border-right: 1px solid #eee;
+  box-shadow: 6px 0 6px rgba(0, 0, 0, .1);
+  /* background-color:rgb(63, 81, 181); */
+}

@@ -39,7 +39,5 @@ export class AuthGuard implements CanActivate {
     }
   
 }
-function moment() {
-  throw new Error('Function not implemented.');
-}
+
 
