@@ -1,1 +1,44 @@
-<p>change-userinfo works!</p>
+<form [formGroup]="form">  
+    <div fxLayout="row">
+  
+      <div fxFlex="40%" fxFlex.md="60%" fxFlex.sm="50%" fxFlex.xs="100%">
+        <p>
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Current Password" formControlName="currentPassword" type= "text"
+            autocomplete="current-password">
+         
+  
+          <mat-error *ngIf="form.controls['currentPassword'].hasError('required')">
+            Please enter a your current password
+          </mat-error>
+        </mat-form-field>
+</p>
+  <p>
+        <mat-form-field class="full-width">
+          <input matInput placeholder="New Password" formControlName="newPassword" type= 'text' autocomplete="new-password">
+      
+          <mat-error *ngIf="form.controls['newPassword'].hasError('required')">
+            Please enter a new password
+          </mat-error>
+        </mat-form-field>
+    </p>
+<p>    
+    <mat-form-field class="full-width">
+          <input matInput placeholder="Confirm New Password" formControlName="newPasswordConfirm" type= 'text' 
+            autocomplete="new-password">
+          
+  
+          <mat-error *ngIf="form.controls['newPasswordConfirm'].hasError('required')">
+            Please confirm your new password
+          </mat-error>
+        </mat-form-field>
+    </p> 
+        <button mat-raised-button color="primary" [disabled]="form.invalid || disableSubmit" (click)="updateUserInfo()">Save</button>
+  
+      </div>
+  
+    </div>
+  
+  </form>
+  
+  

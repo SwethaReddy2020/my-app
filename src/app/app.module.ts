@@ -29,10 +29,6 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatTableModule} from '@angular/material/table';
 import { AboutComponent } from './about/about.component';
 import { RegisterComponent } from './register/register.component';
-import { MenuListComponent } from './menu/menu-list/menu-list.component';
-import { AddMenuComponent } from './menu/add-menu/add-menu.component';
-import { FeedbackComponent } from './menu/feedback/feedback.component';
-import { CustomerListComponent } from './menu/customer-list/customer-list.component';
 import { UserListComponent } from './admin/user-list/user-list.component';
 import { PaymentComponent } from './order/payment/payment.component';
 import { CartComponent } from './order/cart/cart.component';
@@ -53,10 +49,6 @@ import { ChangeUserinfoComponent } from './user/change-userinfo/change-userinfo.
     AccountPageComponent,
     AboutComponent,
     RegisterComponent,
-    MenuListComponent,
-    AddMenuComponent,
-    FeedbackComponent,
-    CustomerListComponent,
     UserListComponent,
     PaymentComponent,
     CartComponent,

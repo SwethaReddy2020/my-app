@@ -1,0 +1,44 @@
+/*** Service ***/
+.service-item {
+    box-shadow: 0 0 45px rgba(0, 0, 0, .08);
+    transition: .5s;
+}
+
+.service-item:hover {
+    background: #FEA116;
+}
+
+.service-item * {
+    transition: .5s;
+}
+
+.service-item:hover * {
+    color: #F1F8FF !important;
+}
+
+/*** Food Menu ***/
+.nav-pills .nav-item .active {
+    border-bottom: 2px solid #FEA116;
+}
+
+.ff-secondary {
+    font-family: 'Pacifico', cursive;
+}
+
+.text-yellow {
+    color: #FEA116;
+}
+
+.btn {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: .5s;
+    background-color: #FEA116;
+    border-color: #FEA116;
+}
+
+.btn.btn-primary,
+.btn.btn-secondary {
+    color: #FFFFFF;
+}
