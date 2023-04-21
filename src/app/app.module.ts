@@ -17,16 +17,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatCardModule} from '@angular/material/card';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
-import {MatSelectModule} from '@angular/material/select';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSelectModule } from '@angular/material/select';
 import { ProfileDetailsComponent } from './user/profile-details/profile-details.component';
 import { ChangePasswordComponent } from './user/change-password/change-password.component';
 import { AccountPageComponent } from './user/account-page/account-page.component';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatTableModule} from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatTableModule } from '@angular/material/table';
 import { AboutComponent } from './about/about.component';
 import { RegisterComponent } from './register/register.component';
 import { UserListComponent } from './admin/user-list/user-list.component';
@@ -37,7 +37,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatInputModule } from '@angular/material/input';
 import { ChangeAddressComponent } from './user/change-address/change-address.component';
 import { ChangeUserinfoComponent } from './user/change-userinfo/change-userinfo.component';
+import { CartService } from 'f:/my-app/src/app/core/services/cart.service';
 
+import { FormBuilder } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,11 +53,12 @@ import { ChangeUserinfoComponent } from './user/change-userinfo/change-userinfo.
     RegisterComponent,
     UserListComponent,
     PaymentComponent,
+    
     CartComponent,
     OrderSummaryComponent,
     DashboardComponent,
     ChangeAddressComponent,
-    ChangeUserinfoComponent
+    ChangeUserinfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,21 +82,22 @@ import { ChangeUserinfoComponent } from './user/change-userinfo/change-userinfo.
     MatSelectModule,
     MatTabsModule,
     MatTableModule,
-    MatInputModule
-
+    MatInputModule,
   ],
-  providers: [ {
-    provide: APP_SERVICE_CONFIG,
-    useValue: APP_CONFIG,
-  },
-  {
-    provide: HTTP_INTERCEPTORS,
-    useClass: RequestInterceptor,
-    multi: true,
-  },
-  { provide: 'LOCALSTORAGE', useValue: window.localStorage }
-
-],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: APP_SERVICE_CONFIG,
+      useValue: APP_CONFIG,
+    },
+    CartService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptor,
+      multi: true,
+    },
+    { provide: 'LOCALSTORAGE', useValue: window.localStorage },
+   
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

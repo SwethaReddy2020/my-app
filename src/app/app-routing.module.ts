@@ -9,6 +9,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CartComponent } from './order/cart/cart.component';
 import { OrderSummaryComponent } from './order/order-summary/order-summary.component';
 import { AccountPageComponent } from './user/account-page/account-page.component';
+import { AddMenuComponent } from './menu/add-menu/add-menu.component';
+import { MatCardModule } from '@angular/material/card';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -26,8 +28,8 @@ const routes: Routes = [
     path: '**',
     redirectTo: 'dashboard',
     pathMatch: 'full'
-  }
-
+  },
+  { path: 'add-menu', component: AddMenuComponent }
 ];
 
 @NgModule({
