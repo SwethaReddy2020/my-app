@@ -1,1 +1,34 @@
-<p>payment works!</p>
+<div class="payment">
+    <h2>Payment Information</h2>
+    <form [formGroup]="paymentForm" (ngSubmit)="submitForm()" class="form">
+      <mat-form-field appearance="fill">
+        <mat-label>Name on Card</mat-label>
+        <input matInput formControlName="nameOnCard" required>
+        <mat-error *ngIf="paymentForm.controls['nameOnCard'].hasError('required')">Name on Card is required</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Credit Card Number</mat-label>
+        <input matInput formControlName="cardNumber" required>
+        <mat-error *ngIf="paymentForm.controls['cardNumber'].hasError('required')">Credit Card Number is required</mat-error>
+      </mat-form-field>
+      <div class="expiration-date">
+        <mat-form-field appearance="fill" class="month">
+          <mat-label>Expiration Month</mat-label>
+          <input matInput formControlName="expirationMonth" required>
+          <mat-error *ngIf="paymentForm.controls['expirationMonth'].hasError('required')">Expiration Month is required</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="year">
+          <mat-label>Expiration Year</mat-label>
+          <input matInput formControlName="expirationYear" required>
+          <mat-error *ngIf="paymentForm.controls['expirationYear'].hasError('required')">Expiration Year is required</mat-error>
+        </mat-form-field>
+      </div>
+      <mat-form-field appearance="fill">
+        <mat-label>CVV</mat-label>
+        <input matInput formControlName="cvv" required>
+        <mat-error *ngIf="paymentForm.controls['cvv'].hasError('required')">CVV is required</mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit" [disabled]="paymentForm.invalid">Pay</button>
+    </form>
+  </div>
+  

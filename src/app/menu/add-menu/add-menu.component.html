@@ -1,0 +1,41 @@
+<div class="container" fxLayout="row" fxLayoutAlign="center none">
+    <div fxFlex="95%">
+      <mat-card>
+        <mat-card-content>
+          <h2>Add Menu</h2>
+  
+          <form>
+            <mat-form-field>
+              <input matInput placeholder="Name" required>
+            </mat-form-field>
+  
+            <mat-form-field>
+              <input matInput placeholder="Description">
+            </mat-form-field>
+  
+            <mat-form-field>
+              <input matInput type="number" placeholder="Price" required>
+              <span matPrefix>$&nbsp;</span>
+            </mat-form-field>
+  
+            <mat-form-field>
+              <mat-select placeholder="Category" required>
+                <mat-option value="appetizers">Appetizers</mat-option>
+                <mat-option value="entrees">Entrees</mat-option>
+                <mat-option value="sides">Sides</mat-option>
+                <mat-option value="desserts">Desserts</mat-option>
+              </mat-select>
+            </mat-form-field>
+  
+            <mat-form-field>
+              <input matInput type="file" placeholder="Image">
+            </mat-form-field>
+  
+            <button mat-raised-button color="primary">Add</button>
+          </form>
+  
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  

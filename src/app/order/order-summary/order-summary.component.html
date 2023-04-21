@@ -1,1 +1,49 @@
-<p>order-summary works!</p>
+<div class="cart">
+    <h2>Order Summary</h2>
+    <div *ngIf="cartItems.length === 0">Your order is empty.</div>
+    <table *ngIf="cartItems.length > 0">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of cartItems">
+          <td>{{ item.name }}</td>
+          <td>{{ item.price | currency }}</td>
+          <td>
+            <button mat-icon-button color="primary" (click)="decrementQuantity(item)" [disabled]="item.quantity <= 1">
+              <mat-icon>remove_circle_outline</mat-icon>
+            </button>
+            {{ item.quantity }}
+            <button mat-icon-button color="primary" (click)="incrementQuantity(item)">
+              <mat-icon>add_circle_outline</mat-icon>
+            </button>
+          </td>
+          <td>{{ item.price * item.quantity | currency }}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3">Subtotal</td>
+          <td>{{ getSubtotal() | currency }}</td>
+        </tr>
+        <tr>
+          <td colspan="3">Tax (10%)</td>
+          <td>{{ getTax() | currency }}</td>
+        </tr>
+        <tr>
+          <td colspan="3">Total</td>
+          <td>{{ getTotal() | currency }}</td>
+        </tr>
+      </tfoot>
+    </table>
+    <div *ngIf="cartItems.length > 0" class="actions">
+      <button mat-raised-button color="primary">Checkout</button>
+      <button mat-raised-button (click)="clearCart()">Clear Order</button>
+    </div>
+  </div>
+  

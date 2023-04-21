@@ -18,12 +18,12 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'admin', component: UserListComponent , canActivate: [AuthGuard]},
-  { path: 'menu', loadChildren: () => import('./menu/menu.module').then(m => m.MenuModule),
-   canActivate: [AuthGuard]
+  { path: 'menu', loadChildren: () => import('./menu/menu.module').then(m => m.MenuModule)
+  
   },
   { path: 'profile', component: AccountPageComponent , canActivate: [AuthGuard]},
-  { path: 'cart', component: CartComponent , canActivate: [AuthGuard]},
-  { path: 'orderSummary', component: OrderSummaryComponent , canActivate: [AuthGuard]},
+  { path: 'cart', component: CartComponent },
+  { path: 'orderSummary', component: OrderSummaryComponent},
   {
     path: '**',
     redirectTo: 'dashboard',

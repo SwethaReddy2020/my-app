@@ -38,7 +38,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ChangeAddressComponent } from './user/change-address/change-address.component';
 import { ChangeUserinfoComponent } from './user/change-userinfo/change-userinfo.component';
 import { CartService } from 'f:/my-app/src/app/core/services/cart.service';
-
+import { RouterModule } from '@angular/router'
 import { FormBuilder } from '@angular/forms';
 @NgModule({
   declarations: [
@@ -83,6 +83,11 @@ import { FormBuilder } from '@angular/forms';
     MatTabsModule,
     MatTableModule,
     MatInputModule,
+    RouterModule.forRoot([
+      { path: 'cart', component: CartComponent },
+      { path: 'payment', component: PaymentComponent },
+      { path: '', redirectTo: '/cart', pathMatch: 'full' }
+    ])
   ],
   providers: [
     {
