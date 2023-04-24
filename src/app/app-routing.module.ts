@@ -11,6 +11,7 @@ import { OrderSummaryComponent } from './order/order-summary/order-summary.compo
 import { AccountPageComponent } from './user/account-page/account-page.component';
 import { AddMenuComponent } from './menu/add-menu/add-menu.component';
 import { MatCardModule } from '@angular/material/card';
+import { FeedbackComponent } from './menu/feedback/feedback.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -24,12 +25,15 @@ const routes: Routes = [
   { path: 'profile', component: AccountPageComponent , canActivate: [AuthGuard]},
   { path: 'cart', component: CartComponent },
   { path: 'orderSummary', component: OrderSummaryComponent},
+  { path: 'add-menu', component: AddMenuComponent },
+  {path : 'feedback',component:FeedbackComponent},
+  
   {
     path: '**',
     redirectTo: 'dashboard',
     pathMatch: 'full'
   },
-  { path: 'add-menu', component: AddMenuComponent }
+  
 ];
 
 @NgModule({
