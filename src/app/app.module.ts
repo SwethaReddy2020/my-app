@@ -38,6 +38,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ChangeAddressComponent } from './user/change-address/change-address.component';
 import { ChangeUserinfoComponent } from './user/change-userinfo/change-userinfo.component';
 import { AlertComponent } from './alert/alert.component';
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,8 @@ import { AlertComponent } from './alert/alert.component';
     MatSelectModule,
     MatTabsModule,
     MatTableModule,
-    MatInputModule
+    MatInputModule,
+    MatChipsModule
 
   ],
   providers: [ {

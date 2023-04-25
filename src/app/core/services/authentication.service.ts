@@ -72,7 +72,7 @@ regiserUser(user: User) {
 }
 
 getAll() {
-    return this.http.get<User[]>('/user');
+    return this.http.get<User[]>('/api/user');
 }
 getById(id: string) {
     return this.http.get<User>(`/user/${id}`);
