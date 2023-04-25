@@ -11,7 +11,9 @@ describe('MenuListComponent', () => {
       declarations: [ MenuListComponent ]
     })
     .compileComponents();
+  });
 
+  beforeEach(() => {
     fixture = TestBed.createComponent(MenuListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

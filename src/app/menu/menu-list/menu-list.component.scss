@@ -1,0 +1,21 @@
+.menu-card {
+    margin: 10px;
+    max-width: 400px;
+  
+    img {
+      height: 200px;
+      object-fit: cover;
+    }
+  
+    .menu-description {
+      white-space: pre-line;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+  
+    .menu-price {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  }
+  
