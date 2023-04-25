@@ -4,6 +4,7 @@ import { AddMenuComponent } from './add-menu/add-menu.component';
 import { MenuListComponent } from './menu-list/menu-list.component';
 import { CustomerListComponent } from './customer-list/customer-list.component';
 
+
 const routes: Routes = [
   { path: 'add', component: AddMenuComponent },
   { path: '', component: MenuListComponent },

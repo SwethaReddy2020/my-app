@@ -1,0 +1,41 @@
+<div class="cart-main-area p">
+    <div class="container">
+        <h3 class="page-title">Order History</h3>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="table-content table-responsive">
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Order No</th>
+                                <th>Price</th>
+                                <th>Date</th>
+                                <th>Order Status</th>
+                                <th>Payment Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let order of orders">
+                                <td>
+                                    <div class="div_order_id">
+                                        <a [routerLink]="['/order', order.orderId]"
+                                            routerLinkActive="active">{{order.orderId}}
+                                        </a>
+                                    </div>
+                                </td>
+                                <td style="font-size:14px;">
+                                    {{order.total}}</td>
+                                <td>
+                                    {{order.date}}
+                                </td>
+                                <td>{{order.paymentStatus}}</td>
+                                <td>{{order.orderStatus}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

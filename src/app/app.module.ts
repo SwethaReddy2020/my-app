@@ -39,6 +39,8 @@ import { ChangeAddressComponent } from './user/change-address/change-address.com
 import { ChangeUserinfoComponent } from './user/change-userinfo/change-userinfo.component';
 import { AlertComponent } from './alert/alert.component';
 import {MatChipsModule} from '@angular/material/chips';
+import { UserInfoComponent } from './user-info/user-info.component';
+import { MyorderComponent } from './order/myorder/myorder.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import {MatChipsModule} from '@angular/material/chips';
     DashboardComponent,
     ChangeAddressComponent,
     ChangeUserinfoComponent,
-    AlertComponent
+    AlertComponent,
+    UserInfoComponent,
+    MyorderComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +76,6 @@ import {MatChipsModule} from '@angular/material/chips';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    FormsModule,
     MatBadgeModule,
     MatSnackBarModule,
     MatMenuModule,

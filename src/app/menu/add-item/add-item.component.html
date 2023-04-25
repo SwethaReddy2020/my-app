@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Install Angular</h2>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup] = "itemForm">
+        <mat-form-field>
+            <input matInput formControlName="itemName" placeholder="Menu ID">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput formControlName="itemDescription" placeholder="User ID">
+          </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Add Item</button>
+</mat-dialog-actions>

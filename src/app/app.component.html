@@ -64,7 +64,7 @@
          </button>
           <p matListItemTitle> Menu </p>
         </a>
-        <a mat-list-item [routerLink]="['/add']" routerLinkActive="active">
+        <a mat-list-item [routerLink]="['menu/myMenu']" routerLinkActive="active">
           <button mat-icon-button  matListItemMeta>
             <mat-icon> <span class="material-symbols-outlined">
               lunch_dining
@@ -82,20 +82,20 @@
         </a>
         
         
-        <a mat-list-item [routerLink]="['/customers']" routerLinkActive="active">
+        <a mat-list-item [routerLink]="['/dashboard']" routerLinkActive="active">
           <button mat-icon-button  matListItemMeta>
             <mat-icon> business</mat-icon>
          </button>
-          <p matListItemTitle> Customers </p>
+          <p matListItemTitle> Dashboard </p>
         </a>
         <a mat-list-item [routerLink]="['/admin']" routerLinkActive="active">
           <button mat-icon-button  matListItemMeta>
             <mat-icon> people</mat-icon>
          </button>
-          <p matListItemTitle> Users </p>
+          <p matListItemTitle> Admin </p>
         </a>
 
-        <a mat-list-item [routerLink]="['/profile']"  routerLinkActive="active">
+        <a mat-list-item [routerLink]="['/myaccount']"  routerLinkActive="active">
           <button mat-icon-button  matListItemMeta>
             <mat-icon> person</mat-icon>
          </button>

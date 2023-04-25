@@ -1,1 +1,61 @@
-<p>add-menu works!</p>
+<div class="container m-4">
+<mat-card>
+    <mat-card-header class="text-center">
+      <mat-card-title>
+        Add Menu
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup] = "menuForm">
+        <mat-form-field>
+          <input matInput formControlName="menuId" placeholder="Menu ID">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="userId" placeholder="User ID">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select formControlName="itemId"  placeholder="Item">
+            <mat-option *ngFor="let item of items" [value]=item.itemId>{{item.itemName}}</mat-option>
+          </mat-select>
+          <button mat-fab color="accent"  aria-label="add item icon"  (click)="openDialog()">
+            <mat-icon>add</mat-icon>
+        </button>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" formControlName="availabilityTime" placeholder="Availability Time">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="status" placeholder="Status">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="ingredients" placeholder="Ingredients">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="recipe" placeholder="Recipe">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput  type="number" formControlName="price" placeholder="Price">
+          <span matTextPrefix>$&nbsp;</span>
+          <span matTextSuffix>.00</span>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput  type="number" formControlName="quantity" placeholder="Quantity">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="sellingType" placeholder="Selling Type">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select formControlName="categoryId"  placeholder="Category">
+            <mat-option *ngFor="let cat of categories" [value]=cat.categoryId>{{cat.categoryName}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="menuImage" placeholder="Menu Image">
+        </mat-form-field>
+        <button mat-raised-button (click)="submitForm()">Add Menu</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -9,6 +9,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CartComponent } from './order/cart/cart.component';
 import { OrderSummaryComponent } from './order/order-summary/order-summary.component';
 import { AccountPageComponent } from './user/account-page/account-page.component';
+import { UserInfoComponent } from './user-info/user-info.component';
+import { MyorderComponent } from './order/myorder/myorder.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -19,12 +21,14 @@ const routes: Routes = [
   { path: 'menu', loadChildren: () => import('./menu/menu.module').then(m => m.MenuModule),
    canActivate: [AuthGuard]
   },
-  { path: 'profile', component: AccountPageComponent , canActivate: [AuthGuard]},
+  {path: 'myorder', component: MyorderComponent},
+  { path: 'myaccount', component: AccountPageComponent , canActivate: [AuthGuard]},
+  { path: 'profile/:userId', component: UserInfoComponent },
   { path: 'cart', component: CartComponent , canActivate: [AuthGuard]},
   { path: 'orderSummary', component: OrderSummaryComponent , canActivate: [AuthGuard]},
   {
     path: '**',
-    redirectTo: '/',
+    redirectTo: '/dashboard',
     pathMatch: 'full'
   }
 
