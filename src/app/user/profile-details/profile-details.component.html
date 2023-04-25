@@ -1,15 +1,15 @@
 <div class="profile-card">
-    <img src="assets/images/user.png" [alt]="fullName">
+    <img src="assets/images/user.png" [alt]="user?.userId">
   
     <h2 class="title">
-      {{fullName}}
+      {{user?.firstName}} {{user?.lastName}}
     </h2>
   
     <label>
-      {{alias}}
+      {{user?.userId}}
     </label>
   
     <label>
-      {{email}}
+      {{user?.emailId}}
     </label>
   </div>

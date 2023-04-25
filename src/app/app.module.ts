@@ -37,6 +37,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatInputModule } from '@angular/material/input';
 import { ChangeAddressComponent } from './user/change-address/change-address.component';
 import { ChangeUserinfoComponent } from './user/change-userinfo/change-userinfo.component';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { ChangeUserinfoComponent } from './user/change-userinfo/change-userinfo.
     OrderSummaryComponent,
     DashboardComponent,
     ChangeAddressComponent,
-    ChangeUserinfoComponent
+    ChangeUserinfoComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,

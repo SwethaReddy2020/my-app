@@ -20,22 +20,18 @@ export class AuthGuard implements CanActivate {
   constructor(private router: Router,
     private notificationService: NotificationService,
     private authService: AuthenticationService) { }
-   canActivate() {
-        const user = this.authService.getCurrentUser();
+   
 
-        if (user && user.expiration) {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    const user = this.authService.userValue;
+    if (user) {
+        // authorised so return true
+        return true;
+    }
 
-            if (moment() < moment(user.expiration)) {
-                return true;
-            } else {
-                this.notificationService.openSnackBar('Your session has expired');
-                this.router.navigate(['auth/login']);
-                return false;
-            }
-        }
-
-        this.router.navigate(['auth/login']);
-        return false;
+    // not logged in so redirect to login page with the return url
+    this.router.navigate(['/account/login'], { queryParams: { returnUrl: state.url }});
+    return false;
     }
   
 }

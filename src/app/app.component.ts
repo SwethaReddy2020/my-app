@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
  import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { SpinnerService } from 'src/app/core/services/spinner.service';
 import { AuthGuard } from 'src/app/core/guards/auth.guard';
+import { User } from './login/users';
 
 @Component({
   selector: 'app-root',
@@ -19,9 +20,8 @@ export class AppComponent  implements OnInit, OnDestroy, AfterViewInit  {
   private _mobileQueryListener: () => void;
   mobileQuery: MediaQueryList;
   showSpinner: boolean = false;
-  userName: string = "";
-  isAdmin: boolean = false;
-
+ 
+  user?: User | null;
   private autoLogoutSubscription: Subscription = new Subscription;
 
   constructor(private changeDetectorRef: ChangeDetectorRef,
@@ -37,16 +37,16 @@ export class AppComponent  implements OnInit, OnDestroy, AfterViewInit  {
 }
 
 ngOnInit(): void {
-  const user = this.authService.getCurrentUser();
-
-  this.isAdmin = user.isAdmin;
-  this.userName = user.fullName;
+ // const user = this.authService.getCurrentUser();
+  this.authService.user.subscribe(x => this.user = x);
+  
+ 
 
   // Auto log-out subscription
-  const timer$ = timer(2000, 5000);
-  this.autoLogoutSubscription = timer$.subscribe(() => {
-      this.authGuard.canActivate();
-  });
+ // const timer$ = timer(2000, 5000);
+  //this.autoLogoutSubscription = timer$.subscribe(() => {
+   //   this.authGuard.canActivate();
+ // });
 }
 
 ngOnDestroy(): void {

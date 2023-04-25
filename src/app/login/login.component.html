@@ -1,36 +1,30 @@
 <div class="container login-container" fxLayout="row" fxLayoutAlign="center center">
-    <form [formGroup]="loginForm" fxFlex="30%" fxFlex.sm="50%" fxFlex.xs="90%">
+    <form [formGroup]="loginForm">
         <mat-card>
-            <mat-card-title>angular-material-template</mat-card-title>
-            <mat-card-subtitle>Log in to your account</mat-card-subtitle>
+            <mat-card-title>Log in to your account</mat-card-title>
             <mat-card-content>
 
-                <mat-form-field class="full-width">
-                    <input id="emailInput" matInput placeholder="Email" formControlName="email" autocomplete="email"
-                        type="email">
+                <mat-form-field appearance="fill">
+                    <input id="userIdInput" matInput placeholder="User Id" formControlName="userId" autocomplete="email"
+                        type="text">
 
-                    <mat-error id="invalidEmailError" *ngIf="loginForm.controls['email'].hasError('email')">
-                        Please enter a valid email address
-                    </mat-error>
-                    <mat-error id="requiredEmailError" *ngIf="loginForm.controls['email'].hasError('required')">
+                    <mat-error id="requiredEmailError" *ngIf="loginForm.controls['userId'].hasError('required')">
                         Email is
                         <strong>required</strong>
                     </mat-error>
 
                 </mat-form-field>
 
-                <mat-form-field class="full-width">
+                <mat-form-field appearance="fill">
                     <input id="passwordInput" matInput placeholder="Password" formControlName="password" type="password"
                         autocomplete="current-password">
-                    <mat-error id="requiredPasswordError" *ngIf="loginForm.controls['email'].hasError('required')">
+                    <mat-error id="requiredPasswordError" *ngIf="loginForm.controls['password'].hasError('required')">
                         Password is
                         <strong>required</strong>
                     </mat-error>
                 </mat-form-field>
 
-                <div class="full-width">
-                    <mat-slide-toggle formControlName="rememberMe">Remember my email address</mat-slide-toggle>
-                </div>
+
 
             </mat-card-content>
 

@@ -2,66 +2,79 @@ import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { delay, map } from 'rxjs/operators';
 import * as moment from 'moment';
-import { of, EMPTY } from 'rxjs';
+import { of, EMPTY, BehaviorSubject, Observable } from 'rxjs';
+import { User } from 'src/app/login/users';
+import { Router } from '@angular/router';
+import { AppConfig } from 'src/app/AppConfig/appconfig.interface';
+import { APP_SERVICE_CONFIG } from 'src/app/AppConfig/appconfig.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  constructor(private http: HttpClient, @Inject('LOCALSTORAGE') private localStorage: Storage) {
-}
+    private userSubject: BehaviorSubject<User | null>;
+    public user: Observable<User | null>;
 
-login(email: string, password: string) {
-    return of(true)
-        .pipe(delay(1000),
-            map((/*response*/) => {
-                // set token property
-                // const decodedToken = jwt_decode(response['token']);
 
-                // store email and jwt token in local storage to keep user logged in between page refreshes
-                this.localStorage.setItem('currentUser', JSON.stringify({
-                    token: 'aisdnaksjdn,axmnczm',
-                    isAdmin: true,
-                    email: 'john.doe@gmail.com',
-                    id: '12312323232',
-                    alias: 'john.doe@gmail.com'.split('@')[0],
-                    expiration: moment().add(1, 'days').toDate(),
-                    fullName: 'John Doe'
-                }));
+  constructor(
+    @Inject(APP_SERVICE_CONFIG) private config: AppConfig,
+    private http: HttpClient, 
+    @Inject('LOCALSTORAGE') private localStorage: Storage,
+    private router: Router,
+    
+    ) {
+        this.userSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('user')!));
+        this.user = this.userSubject.asObservable();
+    }
 
-                return true;
-            }));
-}
+    public get userValue() {
+        return this.userSubject.value;
+    }
 
-logout(): void {
-    // clear token remove user from local storage to log user out
-    this.localStorage.removeItem('currentUser');
-}
 
 getCurrentUser(): any {
-    // TODO: Enable after implementation
-    // return JSON.parse(this.localStorage.getItem('currentUser'));
-    return {
-        token: 'aisdnaksjdn,axmnczm',
-        isAdmin: true,
-        email: 'john.doe@gmail.com',
-        id: '12312323232',
-        alias: 'john.doe@gmail.com'.split('@')[0],
-        expiration: moment().add(1, 'days').toDate(),
-        fullName: 'John Doe'
-    };
+    // return JSON.parse(this.localStorage.getItem('user'));
+    let user  = this.localStorage.getItem('user');
+    if(user != null) {
+      return  JSON.parse(user);
+    }
 }
 
-passwordResetRequest(email: string) {
-    return of(true).pipe(delay(1000));
-}
 
 changePassword(email: string, currentPwd: string, newPwd: string) {
     return of(true).pipe(delay(1000));
 }
 
-passwordReset(email: string, token: string, password: string, confirmPassword: string): any {
-    return of(true).pipe(delay(1000));
+login(userId: string, password: string) {
+    return this.http.post<User>('user/login', { userId, password })
+        .pipe(map(user => {
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+            localStorage.setItem('user', JSON.stringify(user));
+            this.userSubject.next(user);
+            return user;
+        }));
+}
+
+updateUserInfo(user: User) {
+    return this.http.put('/user', user);
+}
+
+logout() {
+    // remove user from local storage and set current user to null
+    localStorage.removeItem('user');
+    this.userSubject.next(null);
+    this.router.navigate(['/login']);
+}
+
+regiserUser(user: User) {
+    return this.http.post('/user/register', user);
+}
+
+getAll() {
+    return this.http.get<User[]>('/user');
+}
+getById(id: string) {
+    return this.http.get<User>(`/user/${id}`);
 }
 }

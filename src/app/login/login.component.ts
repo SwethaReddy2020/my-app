@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from './login.service';
-import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { AuthenticationService } from '../core/services/authentication.service';
 import { NotificationService } from '../core/services/notification.service';
+import { AlertService } from '../core/services/alert.service';
 
 @Component({
   selector: 'app-login',
@@ -12,53 +13,56 @@ import { NotificationService } from '../core/services/notification.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  loginForm!: UntypedFormGroup;
+  loginForm!: FormGroup;
   loading!: boolean;
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
       private titleService: Title,
-      private notificationService: NotificationService,
+      private alertService: AlertService,
+      private formBuilder: FormBuilder,
       private authenticationService: AuthenticationService) {
   }
 
   ngOnInit() {
-      this.titleService.setTitle('angular-material-template - Login');
-      this.authenticationService.logout();
+      this.titleService.setTitle('Login');
       this.createForm();
   }
 
   private createForm() {
-      const savedUserEmail = localStorage.getItem('savedUserEmail');
+    this.loginForm = this.formBuilder.group({
+        userId: ['', Validators.required],
+        password: ['', Validators.required]
+    });
 
-      this.loginForm = new UntypedFormGroup({
-          email: new UntypedFormControl(savedUserEmail, [Validators.required, Validators.email]),
-          password: new UntypedFormControl('', Validators.required),
-          rememberMe: new UntypedFormControl(savedUserEmail !== null)
-      });
   }
 
   login() {
-      const email = this.loginForm.get('email')?.value;
+      const uId = this.loginForm.get('userId')?.value;
       const password = this.loginForm.get('password')?.value;
-      const rememberMe = this.loginForm.get('rememberMe')?.value;
 
+       // reset alerts on submit
+       this.alertService.clear();
+
+       // stop here if form is invalid
+       if (this.loginForm.invalid) {
+           return;
+       }
       this.loading = true;
-      this.authenticationService
-          .login(email.toLowerCase(), password)
-          .subscribe(
-              data => {
-                  if (rememberMe) {
-                      localStorage.setItem('savedUserEmail', email);
-                  } else {
-                      localStorage.removeItem('savedUserEmail');
-                  }
-                  this.router.navigate(['/']);
+      this.authenticationService.login(uId, password)
+          //.pipe(first())
+          .subscribe({
+              next: () => {
+                  // get return url from query parameters or default to home page
+                  const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+                  this.router.navigateByUrl(returnUrl);
               },
-              error => {
-                  this.notificationService.openSnackBar(error.error);
+              error: error => {
+                  this.alertService.error(error);
                   this.loading = false;
               }
-          );
+          });
   }
 
   resetPassword() {

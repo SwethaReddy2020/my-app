@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import {  FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AlertService } from 'src/app/core/services/alert.service';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
-import { NotificationService } from 'src/app/core/services/notification.service';
-import { SpinnerService } from 'src/app/core/services/spinner.service';
 
 @Component({
   selector: 'app-change-userinfo',
@@ -11,21 +10,46 @@ import { SpinnerService } from 'src/app/core/services/spinner.service';
 })
 export class ChangeUserinfoComponent implements OnInit {
 
-  form!: FormGroup;
-  disableSubmit!: boolean;
+  updateForm!: FormGroup
+  loading!: boolean;
 
-  constructor(private authService: AuthenticationService,
-    private spinnerService: SpinnerService,
-    private notificationService: NotificationService) {
+  constructor(private authenticationService: AuthenticationService,
+    private alertService: AlertService,
+    private formBuilder: FormBuilder) {
 
   }
 
+  
   ngOnInit() {
-    
+    const user = this.authenticationService.userValue; 
+    this.updateForm = this.formBuilder.group({
+      userId:[user?.userId, Validators.required],
+      firstName: [user?.firstName, Validators.required],
+      lastName: [user?.lastName, Validators.required],
+      address: [user?.address, Validators.required],
+      contactNumber: [user?.contactNumber, Validators.required],
+      emailId: [user?.emailId, [Validators.required, Validators.email]],
+    });
   }
 
-  updateUserInfo() {
-    
+  onSubmit() {
+    if (this.updateForm.invalid) {
+      return
+    }
+ 
+    this.authenticationService.updateUserInfo(this.updateForm.value)
+    .subscribe({
+        next: () => {
+            this.alertService.success('Registration successful', { keepAfterRouteChange: true });
+            //this.notificationService.openSnackBar('Registration successful')
+           
+        },
+        error: error => {
+          
+            this.alertService.error(error);
+            this.loading = false;
+        }
+    });
   }
 
 }

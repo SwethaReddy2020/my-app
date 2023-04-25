@@ -1,44 +1,44 @@
-<form [formGroup]="form">  
-    <div fxLayout="row">
-  
-      <div fxFlex="40%" fxFlex.md="60%" fxFlex.sm="50%" fxFlex.xs="100%">
-        <p>
-        <mat-form-field class="full-width">
-          <input matInput placeholder="Current Password" formControlName="currentPassword" type= "text"
-            autocomplete="current-password">
-         
-  
-          <mat-error *ngIf="form.controls['currentPassword'].hasError('required')">
-            Please enter a your current password
-          </mat-error>
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill" class="full-width" >
+          <mat-label>User Id</mat-label>
+          <input matInput formControlName="userId" required>
+          <mat-error *ngIf="updateForm.controls['userId'].hasError('required')">User Id is required</mat-error>
         </mat-form-field>
-</p>
-  <p>
-        <mat-form-field class="full-width">
-          <input matInput placeholder="New Password" formControlName="newPassword" type= 'text' autocomplete="new-password">
-      
-          <mat-error *ngIf="form.controls['newPassword'].hasError('required')">
-            Please enter a new password
-          </mat-error>
-        </mat-form-field>
-    </p>
-<p>    
-    <mat-form-field class="full-width">
-          <input matInput placeholder="Confirm New Password" formControlName="newPasswordConfirm" type= 'text' 
-            autocomplete="new-password">
-          
-  
-          <mat-error *ngIf="form.controls['newPasswordConfirm'].hasError('required')">
-            Please confirm your new password
-          </mat-error>
-        </mat-form-field>
-    </p> 
-        <button mat-raised-button color="primary" [disabled]="form.invalid || disableSubmit" (click)="updateUserInfo()">Save</button>
-  
-      </div>
-  
+        <div class="row">
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="firstName" required>
+        <mat-error *ngIf="updateForm.controls['firstName'].hasError('required')">First Name is required</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="lastName" required>
+        <mat-error *ngIf="updateForm.controls['lastName'].hasError('required')">Last Name is required</mat-error>
+      </mat-form-field>
     </div>
-  
-  </form>
-  
-  
+   
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Address</mat-label>
+        <textarea matInput formControlName="address" required></textarea>
+        <mat-error *ngIf="updateForm.controls['address'].hasError('required')">Address is required</mat-error>
+      </mat-form-field>
+      <div class="row">
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>Contact Number</mat-label>
+        <input matInput formControlName="contactNumber" required>
+        <mat-error *ngIf="updateForm.controls['contactNumber'].hasError('required')">Contact Number is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>Email ID</mat-label>
+        <input matInput formControlName="emailId" required email>
+        <mat-error *ngIf="updateForm.controls['emailId'].hasError('required')">Email is required</mat-error>
+        <mat-error *ngIf="updateForm.controls['emailId'].hasError('emailId')">Invalid email address</mat-error>
+      </mat-form-field>
+    </div> 
+      <button mat-raised-button color="primary" type="submit" [disabled]="!updateForm.valid">Updates</button>
+    </form>
+  </mat-card-content>
+</mat-card>

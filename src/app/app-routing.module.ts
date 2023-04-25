@@ -12,8 +12,8 @@ import { AccountPageComponent } from './user/account-page/account-page.component
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'about', component: AboutComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'about', component: AboutComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'admin', component: UserListComponent , canActivate: [AuthGuard]},
   { path: 'menu', loadChildren: () => import('./menu/menu.module').then(m => m.MenuModule),
@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'orderSummary', component: OrderSummaryComponent , canActivate: [AuthGuard]},
   {
     path: '**',
-    redirectTo: 'dashboard',
+    redirectTo: '/',
     pathMatch: 'full'
   }
 

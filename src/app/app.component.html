@@ -6,9 +6,15 @@
       <mat-icon>menu</mat-icon>
     </button>
 
-    <span>My App</span>
+    <span>Fresh & Healthy</span>
     <span class="example-spacer"></span>
 
+    <div *ngIf="!user">
+      <button mat-raised-button  class="m-2" color="accent" [routerLink]="['/login']">Login</button>
+      <button mat-raised-button color="warn" [routerLink]="['/register']">Resgister</button>
+    </div>
+
+    <div *ngIf="user" >
     <button mat-icon-button [matMenuTriggerFor]="notificationMenu">
       <mat-icon matBadge="4" matBadgeColor="accent">notifications</mat-icon>
     </button>
@@ -23,14 +29,13 @@
 
     </mat-menu>
 
-
-
     <button mat-button [matMenuTriggerFor]="userMenu">
       <mat-icon>person</mat-icon>
       <span fxShow fxHide.xs>
-        {{userName}}
+        {{user.firstName}}
       </span>
     </button>
+
     <mat-menu #userMenu="matMenu" xPosition="before" yPosition="above" [overlapTrigger]="false">
 
       <a mat-menu-item [routerLink]="['/account/profile']">
@@ -44,7 +49,7 @@
       </a>
 
     </mat-menu>
-
+  </div>
   </mat-toolbar>
 
 
@@ -90,7 +95,7 @@
           <p matListItemTitle> Users </p>
         </a>
 
-        <a mat-list-item [routerLink]="['/profile']">
+        <a mat-list-item [routerLink]="['/profile']"  routerLinkActive="active">
           <button mat-icon-button  matListItemMeta>
             <mat-icon> person</mat-icon>
          </button>
@@ -104,7 +109,7 @@
           <p matListItemTitle> About </p>
         </a>
 
-        <a mat-list-item [routerLink]="['/login']">
+        <a mat-list-item [routerLink]="['/register']">
           <button mat-icon-button  matListItemMeta>
             <mat-icon> exit_to_app</mat-icon>
            </button>
