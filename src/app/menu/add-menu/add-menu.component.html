@@ -1,41 +1,50 @@
-<div class="container" fxLayout="row" fxLayoutAlign="center none">
-    <div fxFlex="95%">
-      <mat-card>
-        <mat-card-content>
-          <h2>Add Menu</h2>
-  
-          <form>
-            <mat-form-field>
-              <input matInput placeholder="Name" required>
-            </mat-form-field>
-  
-            <mat-form-field>
-              <input matInput placeholder="Description">
-            </mat-form-field>
-  
-            <mat-form-field>
-              <input matInput type="number" placeholder="Price" required>
-              <span matPrefix>$&nbsp;</span>
-            </mat-form-field>
-  
-            <mat-form-field>
-              <mat-select placeholder="Category" required>
-                <mat-option value="appetizers">Appetizers</mat-option>
-                <mat-option value="entrees">Entrees</mat-option>
-                <mat-option value="sides">Sides</mat-option>
-                <mat-option value="desserts">Desserts</mat-option>
-              </mat-select>
-            </mat-form-field>
-  
-            <mat-form-field>
-              <input matInput type="file" placeholder="Image">
-            </mat-form-field>
-  
-            <button mat-raised-button color="primary">Add</button>
-          </form>
-  
-        </mat-card-content>
-      </mat-card>
-    </div>
-  </div>
-  
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Add Menu
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="menuForm">
+      <mat-form-field>
+        <input matInput formControlName="menu_id" placeholder="Menu ID">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="user_id" placeholder="User ID">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="item_id" placeholder="Item ID">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" formControlName="availability_time" placeholder="Availability Time">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="status" placeholder="Status">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="ingredients" placeholder="Ingredients">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="recipe" placeholder="Recipe">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="price" placeholder="Price">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="quantity" placeholder="Quantity">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="selling_type" placeholder="Selling Type">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="category_id" placeholder="Category ID">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="menu_image" placeholder="Menu Image">
+      </mat-form-field>
+      <button mat-raised-button (click)="submitForm()">Add Menu</button>
+    </form>
+  </mat-card-content>
+</mat-card>

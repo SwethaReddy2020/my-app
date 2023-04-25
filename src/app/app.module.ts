@@ -40,6 +40,9 @@ import { ChangeUserinfoComponent } from './user/change-userinfo/change-userinfo.
 import { CartService } from 'f:/my-app/src/app/core/services/cart.service';
 import { RouterModule } from '@angular/router'
 import { FormBuilder } from '@angular/forms';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -87,7 +90,13 @@ import { FormBuilder } from '@angular/forms';
       { path: 'cart', component: CartComponent },
       { path: 'payment', component: PaymentComponent },
       { path: '', redirectTo: '/cart', pathMatch: 'full' }
-    ])
+    ]),
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatButtonModule
   ],
   providers: [
     {
