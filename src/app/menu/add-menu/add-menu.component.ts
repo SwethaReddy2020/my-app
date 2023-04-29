@@ -7,6 +7,9 @@ import { Category } from 'src/app/model/Category';
 import { Item } from 'src/app/model/Item';
 import { AddItemComponent } from '../add-item/add-item.component';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import { NotificationService } from 'src/app/core/services/notification.service';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { User } from 'src/app/login/users';
 
 
 @Component({
@@ -19,21 +22,24 @@ export class AddMenuComponent implements OnInit {
   loading: boolean = false;
   categories: Category[] = [];
   items: Item[] = [];
+  user?: User;
 
   constructor(private fb: FormBuilder,
      private alertService: AlertService, 
      private menuService: MenuService,
+     private notificationService: NotificationService,
      private router: Router,
-     public dialog: MatDialog) {
+     public dialog: MatDialog,
+     private authService: AuthenticationService) {
     
   }
 
   ngOnInit() {
     this.menuService.getItem().subscribe(data => {this.items = data});
     this.menuService.getCategory().subscribe(data => {this.categories = data});
+    this.user = this.authService.getCurrentUser();
     this.menuForm = this.fb.group({
-      menuId: ['', Validators.required],
-      userId: ['', Validators.required],
+      userId: ['', this.user?.userId],
       itemId: ['', Validators.required],
       availabilityTime: ['', Validators.required],
       status: ['', Validators.required],
@@ -51,8 +57,8 @@ export class AddMenuComponent implements OnInit {
     const dialogRef = this.dialog.open(AddItemComponent);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-      this.menuService.addItem(result).subscribe();
+      console.log(`Dialog result: ${result.data}`);
+      this.menuService.addItem(result.data).subscribe();
     });
   }
 
@@ -61,15 +67,16 @@ export class AddMenuComponent implements OnInit {
       return
     }
     this.loading = true;
+    let menu = this.menuForm.value;
     this.menuService.addMenu(this.menuForm.value)
     .subscribe({
         next: () => {
-            this.alertService.success('Registration successful', { keepAfterRouteChange: true });
-            //this.notificationService.openSnackBar('Registration successful')
-            this.router.navigate(['/login']);
+           // this.alertService.success('Registration successful', { keepAfterRouteChange: true });
+            this.notificationService.openSnackBar('Menu Added Successfully')
+            this.router.navigate(['/menu/Mymenu']);
         },
         error: error => {
-          
+          this.notificationService.openSnackBar('Some thing went wrong!!!')
             this.alertService.error(error);
             this.loading = false;
         }

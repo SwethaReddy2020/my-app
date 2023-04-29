@@ -11,6 +11,7 @@ import { OrderSummaryComponent } from './order/order-summary/order-summary.compo
 import { AccountPageComponent } from './user/account-page/account-page.component';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { MyorderComponent } from './order/myorder/myorder.component';
+import { PaymentComponent } from './order/payment/payment.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'profile/:userId', component: UserInfoComponent },
   { path: 'cart', component: CartComponent , canActivate: [AuthGuard]},
   { path: 'orderSummary', component: OrderSummaryComponent , canActivate: [AuthGuard]},
+  { path: 'payment', component: PaymentComponent, canActivate: [AuthGuard]},
   {
     path: '**',
     redirectTo: '/dashboard',

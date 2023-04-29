@@ -1,3 +1,6 @@
+import { Category } from "./Category";
+import { Item } from "./Item";
+
 export class Menu {
     menuId?: string;
       userId?: string;
@@ -10,5 +13,7 @@ export class Menu {
       quantity?: string;
       sellingType?: string;
       categoryId?: string;
-      menuImage?: string
+      menuImage?: string;
+      item?: Item;
+      category?: Category;
 }

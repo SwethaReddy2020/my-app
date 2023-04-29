@@ -10,7 +10,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class AddItemComponent implements OnInit {
  
   itemForm!: FormGroup;
-  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) private data: string,
+  constructor(private fb: FormBuilder,
+     @Inject(MAT_DIALOG_DATA) private data: string,
   private dialogRef: MatDialogRef<AddItemComponent>) {}
   ngOnInit(): void {
     this.itemForm = this.fb.group({
@@ -19,7 +20,9 @@ export class AddItemComponent implements OnInit {
   });
 }
 
-doAction(){
+add(){
   this.dialogRef.close({data:this.itemForm.value});
 }
+
+
 }

@@ -1,0 +1,28 @@
+.payment {
+    h2 {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    .form {
+      display: flex;
+      flex-direction: column;
+      max-width: 500px;
+      margin: 0 auto;
+      .mat-form-field {
+        width: 100%;
+        margin-bottom: 10px;
+        &.month, &.year {
+          width: 50%;
+          margin-bottom: 0;
+          .mat-form-field-infix {
+            padding-left: 0;
+          }
+        }
+      }
+      button {
+        margin-top: 20px;
+        align-self: flex-end;
+      }
+    }
+  }
