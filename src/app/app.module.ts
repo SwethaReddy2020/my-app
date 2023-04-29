@@ -43,6 +43,7 @@ import { FormBuilder } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -86,6 +87,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatTabsModule,
     MatTableModule,
     MatInputModule,
+    FormsModule,
     RouterModule.forRoot([
       { path: 'cart', component: CartComponent },
       { path: 'payment', component: PaymentComponent },
