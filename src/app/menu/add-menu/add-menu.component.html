@@ -7,19 +7,29 @@
     </mat-card-header>
     <mat-card-content>
       <form [formGroup] = "menuForm">
-       
+       <div class="row">
+        <div class="col-10">
         <mat-form-field>
           <mat-select formControlName="itemId"  placeholder="Item">
             <mat-option *ngFor="let item of items" [value]=item.itemId>{{item.itemName}}</mat-option>
           </mat-select>
         </mat-form-field>
-        <button mat-fab color="accent"  aria-label="add item icon"  (click)="openDialog()">
+      </div>
+      <div class="col-2">
+        <button mat-fab color="accent"  aria-label="add item icon"  title="Add new Item" (click)="openDialog()">
           <mat-icon>add</mat-icon>
       </button>
+    </div>
+    </div>
         <mat-form-field>
           <input matInput type="datetime-local" [matDatepicker]="picker" formControlName="availabilityTime" placeholder="Availability Time">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [matTimepicker]="timepicker" formControlName="time">
+          <mat-icon matSuffix>access_time</mat-icon>
+          <mat-timepicker #timepicker></mat-timepicker>
         </mat-form-field>
         <mat-form-field>
           <input matInput formControlName="status" placeholder="Status">
@@ -49,7 +59,7 @@
         <mat-form-field>
           <input matInput formControlName="menuImage" placeholder="Menu Image">
         </mat-form-field>
-        <button mat-raised-button (click)="submitForm()">Add Menu</button>
+        <button mat-raised-button color="accent" (click)="submitForm()">Add Menu</button>
       </form>
     </mat-card-content>
   </mat-card>

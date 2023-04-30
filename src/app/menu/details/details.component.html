@@ -1,3 +1,4 @@
+<div *ngIf="menu">
 <h1>{{ menu.item?.itemName }}</h1>
 <div class="menu-description">
   <div class="menu-image">
@@ -14,4 +15,5 @@
     </div>
     <button (click)="addToCart()">Add to cart</button>
   </div>
+</div>
 </div>

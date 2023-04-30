@@ -25,7 +25,7 @@ export class DetailsComponent  implements OnInit {
 
   ngOnInit(): void {
       // Access the id parameter from the URL
-      const id = this.route.snapshot.paramMap.get('id');
+      const id = this.route.snapshot.paramMap.get('menuId');
       if(id) {
       this.menuService.getMenuDetail(id).subscribe((data: Menu) => {
         this.menu = data;

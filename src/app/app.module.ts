@@ -42,6 +42,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { MyorderComponent } from './order/myorder/myorder.component';
 import { OrderComponent } from './order/order/order.component';
+import { MatTimepickerModule } from 'mat-timepicker';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import { OrderComponent } from './order/order/order.component';
     MatTabsModule,
     MatTableModule,
     MatInputModule,
-    MatChipsModule
+    MatChipsModule,
+    MatTimepickerModule
 
   ],
   providers: [ {

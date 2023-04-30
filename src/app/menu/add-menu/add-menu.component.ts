@@ -39,7 +39,7 @@ export class AddMenuComponent implements OnInit {
     this.menuService.getCategory().subscribe(data => {this.categories = data});
     this.user = this.authService.getCurrentUser();
     this.menuForm = this.fb.group({
-      userId: ['', this.user?.userId],
+      userId: ['', ],
       itemId: ['', Validators.required],
       availabilityTime: ['', Validators.required],
       status: ['', Validators.required],
