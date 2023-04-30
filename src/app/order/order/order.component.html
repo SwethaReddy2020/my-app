@@ -1,0 +1,43 @@
+<div class="container mt-3">
+    <div class="card">
+      <div class="card-header">
+        Order Details
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <h5 class="card-title">Order Information</h5>
+            <p class="card-text">Order ID: {{order?.id}}</p>
+            <p class="card-text">Order Date: {{order?.date | date:'medium'}}</p>
+            <p class="card-text">Payment Status: {{order?.paymentStatus}}</p>
+            <p class="card-text">Order Status: {{order?.orderStatus}}</p>
+          </div>
+          <div class="col-md-6">
+            <h5 class="card-title">Seller Information</h5>
+            <p class="card-text">Seller Name: {{order?.sellerName}}</p>
+            <p class="card-text">Location: {{order?.address}}</p>
+            <p class="card-text">Comment: {{order?.comment}}</p>
+            <p class="card-text">Rating: {{order?.rating}}</p>
+          </div>
+        </div>
+        <hr>
+        <h5 class="card-title">Order Items</h5>
+        <table mat-table [dataSource]="orderItems" class="table">
+          <ng-container matColumnDef="itemName">
+            <th mat-header-cell *matHeaderCellDef> Item Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.item?.itemName}} </td>
+          </ng-container>
+          <ng-container matColumnDef="subTotal">
+            <th mat-header-cell *matHeaderCellDef> Item Price </th>
+            <td mat-cell *matCellDef="let element"> {{element.subTotal | currency}} </td>
+          </ng-container>
+          <ng-container matColumnDef="quantity">
+            <th mat-header-cell *matHeaderCellDef> Quantity </th>
+            <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    </div>
+  </div>

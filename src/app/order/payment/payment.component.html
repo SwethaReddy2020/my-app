@@ -3,8 +3,8 @@
     <form [formGroup]="paymentForm" (ngSubmit)="submitForm()" class="form">
       <mat-form-field appearance="fill">
         <mat-label>Name on Card</mat-label>
-        <input matInput formControlName="nameOnCard" required>
-        <mat-error *ngIf="paymentForm.controls['nameOnCard'].hasError('required')">Name on Card is required</mat-error>
+        <input matInput formControlName="cardHolderName" required>
+        <mat-error *ngIf="paymentForm.controls['cardHolderName'].hasError('required')">Name on Card is required</mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Credit Card Number</mat-label>

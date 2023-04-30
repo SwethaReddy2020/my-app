@@ -26,14 +26,16 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatNativeDateModule } from '@angular/material/core';
 import { AddItemComponent } from './add-item/add-item.component';
-import {MatDialogModule} from '@angular/material/dialog'
+import {MatDialogModule} from '@angular/material/dialog';
+import { DetailsComponent } from './details/details.component'
 
 @NgModule({
   declarations: [ MenuListComponent,
     AddMenuComponent,
     FeedbackComponent,
     CustomerListComponent,
-    AddItemComponent],
+    AddItemComponent,
+    DetailsComponent],
   imports: [
     CommonModule,
     MenuRoutingModule,

@@ -12,6 +12,7 @@ import { AccountPageComponent } from './user/account-page/account-page.component
 import { UserInfoComponent } from './user-info/user-info.component';
 import { MyorderComponent } from './order/myorder/myorder.component';
 import { PaymentComponent } from './order/payment/payment.component';
+import { OrderComponent } from './order/order/order.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -19,10 +20,9 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'admin', component: UserListComponent , canActivate: [AuthGuard]},
-  { path: 'menu', loadChildren: () => import('./menu/menu.module').then(m => m.MenuModule),
-   canActivate: [AuthGuard]
-  },
-  {path: 'myorder', component: MyorderComponent},
+  { path: 'menu', loadChildren: () => import('./menu/menu.module').then(m => m.MenuModule)  },
+  {path: 'myorder', component: MyorderComponent, canActivate: [AuthGuard]},
+  {path: 'order/:orderId', component: OrderComponent, canActivate: [AuthGuard]},
   { path: 'myaccount', component: AccountPageComponent , canActivate: [AuthGuard]},
   { path: 'profile/:userId', component: UserInfoComponent },
   { path: 'cart', component: CartComponent , canActivate: [AuthGuard]},

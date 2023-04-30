@@ -41,6 +41,7 @@ import { AlertComponent } from './alert/alert.component';
 import {MatChipsModule} from '@angular/material/chips';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { MyorderComponent } from './order/myorder/myorder.component';
+import { OrderComponent } from './order/order/order.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { MyorderComponent } from './order/myorder/myorder.component';
     ChangeUserinfoComponent,
     AlertComponent,
     UserInfoComponent,
-    MyorderComponent
+    MyorderComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,

@@ -13,6 +13,8 @@
                                 <th>Date</th>
                                 <th>Order Status</th>
                                 <th>Payment Status</th>
+                                <th>Comment</th>
+                                <th>Rating</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -27,9 +29,18 @@
                                 <td style="font-size:14px;">
                                     {{order.total}}</td>
                                 <td>
-                                    {{order.date}}
+                                    {{order.orderDateTime}}
                                 </td>
                                 <td>{{order.paymentStatus}}</td>
+                                <td>{{order.orderStatus}}</td>
+                                <td><div *ngIf="order.comment">
+                                    <div class="card">
+                                        <div class="card-title">{{order.rating}}</div>
+                                        <div class="card-text">{{order.comment}}</div>
+                                    </div>
+                                </div> 
+                                    <div *ngIf="!order.comment"> <a>Add feedback</a> </div>>
+                                </td>
                                 <td>{{order.orderStatus}}</td>
                             </tr>
                         </tbody>

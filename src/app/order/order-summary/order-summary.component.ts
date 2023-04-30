@@ -1,16 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CartService } from 'src/app/core/services/cart.service';
+import { CartItem } from 'src/app/model/CartItem';
 
 @Component({
   selector: 'app-order-summary',
   templateUrl: './order-summary.component.html',
   styleUrls: ['./order-summary.component.scss']
 })
-export class OrderSummaryComponent {
-  cartItems = [
-    { name: 'Product 1', price: 9.99, quantity: 2 },
-    { name: 'Product 2', price: 19.99, quantity: 1 },
-    { name: 'Product 3', price: 14.99, quantity: 3 }
-  ];
+export class OrderSummaryComponent implements OnInit {
+  cartItems : CartItem[] = [];
+
+  constructor(private cartService: CartService) { }
+
+
+  ngOnInit(): void {
+    this.cartItems = this.cartService.getItems();
+  }
 
   decrementQuantity(item: any) {
     if (item.quantity > 1) {

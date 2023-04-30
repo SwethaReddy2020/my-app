@@ -20,7 +20,7 @@ export class CustomerListComponent implements OnInit {
   ngOnInit(): void {
     this.user = this.authService.getCurrentUser();
     if(this.user) {
-    this.menuService.getMenuByUser("Spoo123").subscribe((menus: Menu[]) => {
+    this.menuService.getMenuByUser(this.user?.userId).subscribe((menus: Menu[]) => {
       this.menus = menus;
     }); }
     else {

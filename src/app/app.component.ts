@@ -7,6 +7,8 @@ import { Subscription } from 'rxjs';
 import { SpinnerService } from 'src/app/core/services/spinner.service';
 import { AuthGuard } from 'src/app/core/guards/auth.guard';
 import { User } from './login/users';
+import { CartItem } from './model/CartItem';
+import { CartService } from './core/services/cart.service';
 
 @Component({
   selector: 'app-root',
@@ -22,12 +24,15 @@ export class AppComponent  implements OnInit, OnDestroy, AfterViewInit  {
   showSpinner: boolean = false;
  
   user?: User | null;
+  cart?: CartItem[] | null;
+  
   private autoLogoutSubscription: Subscription = new Subscription;
 
   constructor(private changeDetectorRef: ChangeDetectorRef,
     private media: MediaMatcher,
     public spinnerService: SpinnerService,
     private authService: AuthenticationService,
+    private cartService: CartService,
     private authGuard: AuthGuard) {
 
     this.mobileQuery = this.media.matchMedia('(max-width: 1000px)');
@@ -39,7 +44,7 @@ export class AppComponent  implements OnInit, OnDestroy, AfterViewInit  {
 ngOnInit(): void {
  // const user = this.authService.getCurrentUser();
   this.authService.user.subscribe(x => this.user = x);
-  
+  this.cartService.cart.subscribe(c => this.cart = c);
  
 
   // Auto log-out subscription

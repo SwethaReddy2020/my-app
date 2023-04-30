@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { NotificationService } from 'src/app/core/services/notification.service';
+import { OrderService } from 'src/app/core/services/order.service';
+import { User } from 'src/app/login/users';
+import { OrderSummary } from 'src/app/model/OrderSummary';
 
 @Component({
   selector: 'app-payment',
@@ -9,8 +15,14 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class PaymentComponent  implements OnInit {
   paymentForm!: FormGroup;
   submitted = false;
+  user?: User;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, 
+    private orderService: OrderService,
+      private authService: AuthenticationService,
+      private router: Router,
+      private notificationService: NotificationService,
+      ) { }
 
   ngOnInit(): void {
     this.paymentForm = this.formBuilder.group({
@@ -32,7 +44,15 @@ export class PaymentComponent  implements OnInit {
     if (this.paymentForm.invalid) {
       return;
     }
-
+    this.user = this.authService.getCurrentUser();
+    if(this.user) {
+    this.orderService.placeOrder(this.user?.userId).subscribe((data: OrderSummary) => {
+      this.notificationService.openSnackBar("You have successfully placed order")
+      this.router.navigate(['/myorder']); 
+    }); }
+    else {
+      this.router.navigate(['/login']);
+    }
     // Submit payment form
   }
 

@@ -3,12 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddMenuComponent } from './add-menu/add-menu.component';
 import { MenuListComponent } from './menu-list/menu-list.component';
 import { CustomerListComponent } from './customer-list/customer-list.component';
+import { AuthGuard } from '../core/guards/auth.guard';
+import { DetailsComponent } from './details/details.component';
 
 
 const routes: Routes = [
-  { path: 'add', component: AddMenuComponent },
+  { path: 'add', component: AddMenuComponent,    canActivate: [AuthGuard] },
+  { path: 'details/:menuId', component: DetailsComponent },
   { path: '', component: MenuListComponent },
-  { path: 'myMenu', component: CustomerListComponent },
+  { path: 'myMenu', component: CustomerListComponent,    canActivate: [AuthGuard] },
 ];
 
 @NgModule({

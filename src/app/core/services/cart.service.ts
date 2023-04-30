@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { Observable } from 'rxjs/internal/Observable';
 import { CartItem } from 'src/app/model/CartItem';
 
 @Injectable({
@@ -8,8 +10,13 @@ export class CartService {
 
   
   cartItems: CartItem[] = [];
+  private cartSubject: BehaviorSubject<CartItem[]>;
+  public cart: Observable<CartItem[] | null>;
 
-  constructor() { }
+  constructor() {
+    this.cartSubject = new BehaviorSubject(this.cartItems);
+    this.cart = this.cartSubject.asObservable();
+   }
 
   getItems(): CartItem[] {
     return this.cartItems;
@@ -20,14 +27,14 @@ export class CartService {
   }
 
   removeCartItem(item: CartItem) {
-    const index = this.cartItems.findIndex((cartItem) => cartItem.id === item.id);
+    const index = this.cartItems.findIndex((cartItem) => cartItem.menuId === item.menuId);
     if (index !== -1) {
       this.cartItems.splice(index, 1);
     }
   }
 
   updateCartItem(item: CartItem) {
-    const index = this.cartItems.findIndex((cartItem) => cartItem.id === item.id);
+    const index = this.cartItems.findIndex((cartItem) => cartItem.menuId === item.menuId);
     if (index !== -1) {
       this.cartItems[index] = item;
     }

@@ -26,6 +26,10 @@ export class MenuService {
     return this.http.get<Menu[]>(`/api/menu?userId=${userId}`);
   }
 
+  getMenuDetail(menuId: String) {
+    return this.http.get<Menu>(`/api/menu/${menuId}`)
+  } 
+
   getMenuByStatus(status: String) {
     return this.http.get<Menu[]>(`/api/menu?status=${status}`);
   }

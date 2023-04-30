@@ -1,0 +1,17 @@
+<h1>{{ menu.item?.itemName }}</h1>
+<div class="menu-description">
+  <div class="menu-image">
+    <img src="{{ menu.menuImage }}" alt="{{ menu.item?.itemName }}">
+  </div>
+  <div class="menu-details">
+    <p><strong>Restaurant:</strong> {{ menu.sellingType }}</p>
+    <p><strong>Category:</strong> {{ menu.category?.categoryName }}</p>
+    <p><strong>Price:</strong> {{ menu.price | currency }}</p>
+    <p><strong>Description:</strong> {{ menu.item?.itemDescribe }}</p>
+    <div class="menu-quantity">
+      <label for="quantity">Quantity:</label>
+      <input type="number" id="quantity" name="quantity" [(ngModel)]="quantity">
+    </div>
+    <button (click)="addToCart()">Add to cart</button>
+  </div>
+</div>

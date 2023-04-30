@@ -42,7 +42,7 @@
       </tfoot>
     </table>
     <div *ngIf="cartItems.length > 0" class="actions">
-      <button mat-raised-button color="primary">Checkout</button>
+      <button mat-raised-button color="primary" [routerLink]="['/payment']">Confirm and Pay</button>
       <button mat-raised-button (click)="clearCart()">Clear Order</button>
     </div>
   </div>

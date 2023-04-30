@@ -14,6 +14,12 @@
       <button mat-raised-button color="warn" [routerLink]="['/register']">Resgister</button>
     </div>
 
+    <div *ngIf="cart ? cart.length > 0  : false">
+      <button mat-icon-button [routerLink]="['/cart']">
+        <mat-icon matBadge="{{cart ? cart.length : 0}}" matBadgeColor="accent">shopping_cart</mat-icon>
+      </button>
+    </div>
+
     <div *ngIf="user" >
     <button mat-icon-button [matMenuTriggerFor]="notificationMenu">
       <mat-icon matBadge="4" matBadgeColor="accent">notifications</mat-icon>
@@ -127,9 +133,9 @@
         </mat-progress-bar>
         <!-- <mat-spinner class="spinner" [diameter]="50" *ngIf="showSpinner"></mat-spinner> -->
       </div>
-
-
-      <router-outlet></router-outlet>
+ <div class="container shadow p-3 m-3 bg-body rounded">
+  <router-outlet></router-outlet>
+ </div>
 
     </mat-drawer-content>
   </mat-drawer-container>
