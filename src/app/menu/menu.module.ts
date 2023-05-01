@@ -28,6 +28,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { AddItemComponent } from './add-item/add-item.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DetailsComponent } from './details/details.component'
+import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
 
 @NgModule({
   declarations: [ MenuListComponent,
@@ -59,7 +60,8 @@ import { DetailsComponent } from './details/details.component'
     MatChipsModule,
     MatDatepickerModule,
     MatNativeDateModule ,
-    MatDialogModule
+    MatDialogModule,
+    NgxMatTimepickerModule
   ], providers: [  
     MatDatepickerModule,
     MatNativeDateModule  

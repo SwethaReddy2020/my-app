@@ -1,19 +1,19 @@
 <div *ngIf="menu">
-<h1>{{ menu.item?.itemName }}</h1>
-<div class="menu-description">
-  <div class="menu-image">
-    <img src="{{ menu.menuImage }}" alt="{{ menu.item?.itemName }}">
-  </div>
-  <div class="menu-details">
-    <p><strong>Restaurant:</strong> {{ menu.sellingType }}</p>
-    <p><strong>Category:</strong> {{ menu.category?.categoryName }}</p>
-    <p><strong>Price:</strong> {{ menu.price | currency }}</p>
-    <p><strong>Description:</strong> {{ menu.item?.itemDescribe }}</p>
-    <div class="menu-quantity">
-      <label for="quantity">Quantity:</label>
-      <input type="number" id="quantity" name="quantity" [(ngModel)]="quantity">
+
+  <mat-card  class="menu-card" >
+    <div class="row g-0 mb-4">
+      <div class="col-md-4">
+        <img  [src]="menu.menuImage" class="img-fluid rounded-start menu-image" alt="menu image">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body ms-2">
+          <h3 class="card-title" class="title">{{ menu.item?.itemName }}</h3>
+          <p class="card-text category"><small class="text-muted">{{ menu.category?.categoryName  }}</small></p>
+          <p class="card-text menu-price"><small class="text-muted">Price: {{ menu.price }}</small></p>
+          <p class="card-text">{{ menu.item?.itemDescription }}</p>
+          <p class="card-text"><small class="text-muted">{{ menu.ingredients  }}</small></p>
+          <button mat-raised-button color="accent">Add to Cart</button>
+        </div>
+      </div>
     </div>
-    <button (click)="addToCart()">Add to cart</button>
-  </div>
-</div>
-</div>
+  </mat-card>

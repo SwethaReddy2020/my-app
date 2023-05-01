@@ -41,13 +41,15 @@ export class AddMenuComponent implements OnInit {
     this.menuForm = this.fb.group({
       userId: ['', ],
       itemId: ['', Validators.required],
+      availableDate: ['', Validators.required],
+      availableTime: ['', Validators.required],
       availabilityTime: ['', Validators.required],
-      status: ['', Validators.required],
+      status: ['Active', Validators.required],
       ingredients: ['', Validators.required],
       recipe: ['', Validators.required],
       price: ['', Validators.required],
       quantity: ['', Validators.required],
-      sellingType: ['', Validators.required],
+      sellingType: ['All', Validators.required],
       categoryId: ['', Validators.required],
       menuImage: ['', Validators.required]
     });
@@ -63,11 +65,19 @@ export class AddMenuComponent implements OnInit {
   }
 
   submitForm() {
+    const dateValue = this.menuForm.get('availableDate')?.value;
+    const timeValue = this.menuForm.get('availableTime')?.value;
+    console.log(dateValue.getTime() + (parseFloat(timeValue) * 3600000));
+    const dateTime = new Date(dateValue.getTime() + (parseFloat(timeValue)  * 3600000));
+    this.menuForm.get("userId")?.setValue(this.user?.userId);
+    this.menuForm.get("availabilityTime")?.setValue(dateTime);
+    this.menuForm.get("menuImage")?.setValue(dateTime);
     if (this.menuForm.invalid) {
       return
     }
     this.loading = true;
     let menu = this.menuForm.value;
+    console.log(menu);
     this.menuService.addMenu(this.menuForm.value)
     .subscribe({
         next: () => {

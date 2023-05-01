@@ -42,7 +42,8 @@ import {MatChipsModule} from '@angular/material/chips';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { MyorderComponent } from './order/myorder/myorder.component';
 import { OrderComponent } from './order/order/order.component';
-import { MatTimepickerModule } from 'mat-timepicker';
+import {NgxMatTimepickerModule} from 'ngx-mat-timepicker';  
+
 
 @NgModule({
   declarations: [
@@ -90,8 +91,7 @@ import { MatTimepickerModule } from 'mat-timepicker';
     MatTableModule,
     MatInputModule,
     MatChipsModule,
-    MatTimepickerModule
-
+    NgxMatTimepickerModule
   ],
   providers: [ {
     provide: APP_SERVICE_CONFIG,
