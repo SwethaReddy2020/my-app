@@ -11,7 +11,7 @@
 
     <div *ngIf="!user">
       <button mat-raised-button  class="m-2" color="accent" [routerLink]="['/login']">Login</button>
-      <button mat-raised-button color="warn" [routerLink]="['/register']">Resgister</button>
+      <button mat-raised-button color="warn" [routerLink]="['/register']">Register</button>
     </div>
 
     <div *ngIf="cart ? cart.length > 0  : false">
@@ -47,7 +47,7 @@
 
     <mat-menu #userMenu="matMenu" xPosition="before" yPosition="above" [overlapTrigger]="false">
 
-      <a mat-menu-item [routerLink]="['/account/profile']">
+      <a mat-menu-item [routerLink]="['/myaccount']">
         <mat-icon>person</mat-icon>
         <span>Account</span>
       </a>
