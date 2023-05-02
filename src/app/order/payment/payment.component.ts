@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { CartService } from 'src/app/core/services/cart.service';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { OrderService } from 'src/app/core/services/order.service';
 import { User } from 'src/app/login/users';
@@ -20,6 +21,7 @@ export class PaymentComponent  implements OnInit {
   constructor(private formBuilder: FormBuilder, 
     private orderService: OrderService,
       private authService: AuthenticationService,
+      private cartService: CartService,
       private router: Router,
       private notificationService: NotificationService,
       ) { }
@@ -44,6 +46,7 @@ export class PaymentComponent  implements OnInit {
     if(this.user) {
     this.orderService.placeOrder(this.user?.userId).subscribe((data: OrderSummary) => {
       this.notificationService.openSnackBar("You have successfully placed order")
+      this.cartService.clearCart();
       this.router.navigate(['/myorder']); 
     }); }
     else {

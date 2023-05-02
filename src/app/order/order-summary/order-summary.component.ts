@@ -35,6 +35,7 @@ export class OrderSummaryComponent implements OnInit {
   }
 
   clearCart() {
+    this.cartService.clearCart();
     this.cartItems = [];
   }
 

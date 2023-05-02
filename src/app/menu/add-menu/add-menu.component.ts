@@ -87,7 +87,7 @@ export class AddMenuComponent implements OnInit {
         next: () => {
            // this.alertService.success('Registration successful', { keepAfterRouteChange: true });
             this.notificationService.openSnackBar('Menu Added Successfully')
-            this.router.navigate(['/menu/Mymenu']);
+            this.router.navigate(['/menu/myMenu']);
         },
         error: error => {
           this.notificationService.openSnackBar('Some thing went wrong!!!')

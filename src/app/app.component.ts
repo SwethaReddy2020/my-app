@@ -49,11 +49,11 @@ ngOnInit(): void {
   this.authService.user.subscribe(x => this.user = x);
   this.cartService.cart.subscribe(c => this.cart = c);
   this.usernotifiyService.notity.subscribe(n => this.notifications = n);
-  const source$ = interval(2000000); // interval of 20 seconds
+  const source$ = interval(20000); // interval of 20 seconds
   const http$ = source$.pipe(
     switchMap(() => this.usernotifiyService.getNotification())
   ).subscribe(data => {
-    // console.log(data);
+    console.log(data);
   });
 }
 
