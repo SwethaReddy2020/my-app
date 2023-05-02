@@ -1,25 +1,20 @@
 <div class="container mt-4">
+    <div *ngIf="sellerProfile">
     <mat-card>
         <mat-card-header>
-            <mat-card-title>{{ user.firstName }}</mat-card-title>
-            <mat-card-subtitle>5-star rated chef</mat-card-subtitle>
+            <mat-card-title>{{sellerProfile.customer?.firstName}}{{sellerProfile.customer?.lastName}}</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-            <div class="row mt-4">
-                <div class="col profile-picture">
+            <div class="row mt-4 mb-4">
+                <div class="col profile-picture ms-2">
                     <img src="assets/images/user.png" alt="Profile Picture">
                 </div>
                 <div class="col profile-details">
-                    <p><strong>Email:</strong> {{ user.emailId }}</p>
-                    <p><strong>Phone:</strong> {{ user.contactNumber }}</p>
-                    <p><strong>Location:</strong> {{ user.address }}</p>
-                    <p><strong>Specialty:</strong> Indian</p>
+                    <p><strong>Location:</strong> {{ sellerProfile.location }}</p>
+                    <p><strong>about :</strong> {{sellerProfile.about}}</p>
                 </div>
             </div>
-            <div class="row m-3">
-                <p>Chef John Doe has over 10 years of experience in culinary arts. He specializes in Italian and French
-                    cuisine.</p>
-            </div>
+            
             <div class="row m-2">
                 <div class="col-1">
                     <button mat-fab color="accent" aria-label="order recived">
@@ -50,30 +45,39 @@
             </div>
         </mat-card-content>
     </mat-card>
-
+</div>
     <mat-divider></mat-divider>
-    <div class="container pt-5 pb-3">
+      <div class="testimonials section-bg mt-4">
         <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h5 class="section-title ff-secondary text-center text-primary fw-normal">Team Members</h5>
-                <h1 class="mb-5">Our Master Chefs</h1>
+              <div class="text-center">
+                <h5 class="section-title ff-secondary text-center text-primary fw-normal">What Are They Saying</h5>
+                <h1 class="mb-3">Feedback</h1>
             </div>
-            <div class="row g-4">
-                <div class="col-lg-3 col-md-6 wow fadeInUp" *ngFor="let review of reviews">
-                    <mat-card>
-                        <mat-card-header>
-                            <mat-card-title>jojn</mat-card-title>
-                            <mat-card-subtitle>Rating: {{review.rating}}</mat-card-subtitle>
-                        </mat-card-header>
-                        <mat-card-content>
-
-                            <h4>{{review.title}}</h4>
-                            <p>{{review.description}}</p>
-
-                        </mat-card-content>
-                    </mat-card>
+            <div class="row row-cols-1 row-cols-md-3 g-4" >
+                <div class="col" *ngFor="let review of reviews">
+                <div class="card">
+                <div class="testimonial-item m-4">
+                    <div class="testimonial-content">
+                        <p>
+                          <i class="bi bi-quote quote-icon-left"></i>
+                          {{review.description}}
+                          <i class="bi bi-quote quote-icon-right"></i>
+                        </p>
+                        <h3>Sara Wilsson</h3>
+                        <div class="stars">
+                          <i class="bi bi-star-fill"></i>
+                          <i class="bi bi-star-fill"></i>
+                          <i class="bi bi-star-fill"></i>
+                          <i class="bi bi-star-fill"></i>
+                          <i class="bi bi-star"></i>
+                        </div>
+                      </div>
+                  </div>
                 </div>
             </div>
+            </div>
         </div>
-    </div>
+
+      </div>
+
 </div>

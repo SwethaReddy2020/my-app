@@ -24,6 +24,7 @@ export class CartService {
 
   addCartItem(item: CartItem) {
     this.cartItems.push(item);
+    this.cartSubject.next(this.cartItems);
   }
 
   removeCartItem(item: CartItem) {
@@ -31,6 +32,7 @@ export class CartService {
     if (index !== -1) {
       this.cartItems.splice(index, 1);
     }
+    this.cartSubject.next(this.cartItems);
   }
 
   updateCartItem(item: CartItem) {
@@ -38,9 +40,11 @@ export class CartService {
     if (index !== -1) {
       this.cartItems[index] = item;
     }
+    this.cartSubject.next(this.cartItems);
   }
 
   clearCart() {
     this.cartItems = [];
+    this.cartSubject.next(this.cartItems);
   }
 }

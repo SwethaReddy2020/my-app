@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, UntypedFormGroup, Validators } from '@angular/f
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { SpinnerService } from 'src/app/core/services/spinner.service';
+import { User } from 'src/app/login/users';
 
 @Component({
   selector: 'app-change-address',
@@ -12,8 +13,9 @@ import { SpinnerService } from 'src/app/core/services/spinner.service';
 export class ChangeAddressComponent implements OnInit  {
   form!: FormGroup;
   disableSubmit!: boolean;
+  user!: User | null
 
-  constructor(private authService: AuthenticationService,
+  constructor(private authenticationService: AuthenticationService,
     private spinnerService: SpinnerService,
     private notificationService: NotificationService,   
       private fb: FormBuilder,
@@ -21,18 +23,33 @@ export class ChangeAddressComponent implements OnInit  {
 
   }
   ngOnInit(): void {
+     this.user = this.authenticationService.userValue; 
    this.form = this.fb.group({
-    addressLine1: ['', { validators: [Validators.required] }],
-    addressLine2: [''],
-    city: ['', { validators: [Validators.required] }],
-    state: ['', { validators: [Validators.required] }],
-    country: [''],
-    zipCode: [''],
+    profileId: ['', ],
+    about: ['',{ validators: [Validators.required] }],
+    location: ['', { validators: [Validators.required] }],
+    rating: [3, { validators: [Validators.required] }],
   })
   }
 
-  updateAddress() {
-
+  onSubmit() {
+    if (this.form.invalid) {
+      return
+    }
+    this.form.get("profileId")?.setValue(this.user?.userId);
+    this.authenticationService.createSellerProfile(this.form.value)
+    .subscribe({
+        next: () => {
+            //this.alertService.success('Registration successful', { keepAfterRouteChange: true });
+            this.notificationService.openSnackBar('successfully Created Seller Profile')
+           
+        },
+        error: error => {
+          this.notificationService.openSnackBar('Error Created Seller Profile')
+         //   this.alertService.error(error);
+         //   this.loading = false;
+        }
+    });
   }
 
 }

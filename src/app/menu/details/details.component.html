@@ -1,19 +1,53 @@
 <div *ngIf="menu">
 
-  <mat-card  class="menu-card" >
-    <div class="row g-0 mb-4">
+  <mat-card class="menu-card">
+    <div class="row g-0 mb-5">
       <div class="col-md-4">
-        <img  [src]="menu.menuImage" class="img-fluid rounded-start menu-image" alt="menu image">
+        <img [src]="menu.menuImage" class="img-fluid rounded-start menu-image" alt="menu image">
       </div>
-      <div class="col-md-8">
-        <div class="card-body ms-2">
-          <h3 class="card-title" class="title">{{ menu.item?.itemName }}</h3>
-          <p class="card-text category"><small class="text-muted">{{ menu.category?.categoryName  }}</small></p>
-          <p class="card-text menu-price"><small class="text-muted">Price: {{ menu.price }}</small></p>
-          <p class="card-text">{{ menu.item?.itemDescription }}</p>
-          <p class="card-text"><small class="text-muted">{{ menu.ingredients  }}</small></p>
-          <button mat-raised-button color="accent">Add to Cart</button>
+      <div class="col-md-7">
+        <div class="card-body ms-4">
+          <h1 class="card-title m-4" class="title">{{ menu.item?.itemName }}</h1>
+          <p class="card-text category text-muted m-4">{{ menu.category?.categoryName }}</p>
+
+          <div class="m-4">
+            <mat-icon *ngFor="let icon of icons" [style.color]="icon.color">{{ icon.value }}</mat-icon>
+          </div>
+          <div class="card-text menu-price m-4">Price: {{ menu.price }}</div>
+          <div class="card-text mb-4 menu-description">{{ menu.item?.itemDescription }}</div>
+          <div class="card-text mb-4 menu-description"> Ingredients : {{ menu.ingredients }}</div>
+          <div class="card-text mb-4 menu-description"> Seller : {{menu.sellerProfile?.customer?.firstName}} </div>
+          <div class="m-4">
+            <form [formGroup] = "cartForm">
+            <mat-form-field>
+              <input matInput formControlName="quantity" placeholder="Quantity">
+            </mat-form-field>
+            <button class="m-2" mat-raised-button color="accent" (click)="addToCart()">Add to Cart</button>
+          </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <div class="card-title"> Recipe </div>
+        <div class="card-text"> {{ menu.recipe }} </div>
+      </div>
+      <div class="col-6">
+        <div class="card mt-4">
+          <div class="card-body">
+            <h1 class="card-title">Seller Infomration</h1>
+            <h3 class="card-subtitle mb-2">{{menu.sellerProfile?.customer?.firstName}}
+              {{menu.sellerProfile?.customer?.lastName}}</h3>
+            <p class="card-text">{{menu.sellerProfile?.about}}</p>
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+          </div>
         </div>
       </div>
     </div>
   </mat-card>
+
+</div>

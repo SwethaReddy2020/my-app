@@ -1,3 +1,4 @@
+<div class="container">
 <h2 mat-dialog-title align="center">Add Item</h2>
 <mat-dialog-content class="mat-typography">
     <form [formGroup] = "itemForm">
@@ -19,3 +20,4 @@
     <button mat-button mat-dialog-close>Cancel</button>
     <button mat-button [mat-dialog-close]="true" cdkFocusInitial  color="accent" (click)="add()">Add Item</button>
 </mat-dialog-actions>
+</div>

@@ -1,75 +1,29 @@
-.menu-description {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    
-    .menu-image {
-      width: 400px;
-      height: 300px;
-      margin-bottom: 20px;
-    }
-    
-    .menu-details {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      
-      .menu-name {
-        font-size: 24px;
-        font-weight: bold;
-        margin-bottom: 10px;
-      }
-      
-      .menu-category {
-        font-size: 18px;
-        margin-bottom: 10px;
-      }
-      
-      .menu-price {
-        font-size: 20px;
-        font-weight: bold;
-        margin-bottom: 10px;
-      }
-      
-      .menu-description {
-        font-size: 16px;
-        margin-bottom: 20px;
-      }
-      
-      .menu-quantity {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        margin-bottom: 20px;
-        
-        .quantity-label {
-          font-size: 18px;
-          margin-right: 10px;
-        }
-        
-        .quantity-input {
-          width: 50px;
-          height: 30px;
-          text-align: center;
-          border: 1px solid black;
-        }
-      }
-      
-      .add-to-cart-button {
-        width: 150px;
-        height: 40px;
-        font-size: 18px;
-        background-color: black;
-        color: white;
-        border: none;
-        cursor: pointer;
-        transition: background-color 0.3s;
-        margin-bottom: 20px;
-        
-        &:hover {
-          background-color: #444;
-        }
-      }
-    }
+.menu-card {
+  margin: 10px;
+
+  .menu-description {
+    white-space: pre-line;
+    margin-top: 10px;
+    font-size: 20px;
   }
+
+  .menu-price {
+    font-weight: bolder;
+    font-size: large;
+    font-size: 25px;
+  }
+
+  .category {
+    font-size: larger;
+  font-style: oblique;
+  font-weight: bolder;
+  font-size: 25px;
+  }
+  .title {
+  font-family: "Playfair Display";
+  letter-spacing: 6px;
+  font-weight: bolder;
+  text-transform: uppercase;
+  font-size: 50px;
+  }
+}

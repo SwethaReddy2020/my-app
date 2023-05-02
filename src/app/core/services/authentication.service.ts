@@ -7,6 +7,7 @@ import { User } from 'src/app/login/users';
 import { Router } from '@angular/router';
 import { AppConfig } from 'src/app/AppConfig/appconfig.interface';
 import { APP_SERVICE_CONFIG } from 'src/app/AppConfig/appconfig.service';
+import { SellerProfile } from 'src/app/model/SellerProfile';
 
 @Injectable({
     providedIn: 'root'
@@ -58,6 +59,13 @@ export class AuthenticationService {
 
     updateUserInfo(user: User) {
         return this.http.put('/api/user', user);
+    }
+
+    createSellerProfile(sellerProfile: SellerProfile) {
+        return this.http.post('/api/user/seller', sellerProfile);
+    }
+    getsellerProfile(userId: string) {
+        return this.http.get<SellerProfile>(`/api/user/seller/${userId}`);
     }
 
     logout() {

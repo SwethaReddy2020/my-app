@@ -1,33 +1,76 @@
-<div class="payment">
-    <h2>Payment Information</h2>
-    <form [formGroup]="paymentForm" (ngSubmit)="submitForm()" class="form">
-      <mat-form-field appearance="fill">
-        <mat-label>Name on Card</mat-label>
-        <input matInput formControlName="cardHolderName" required>
-        <mat-error *ngIf="paymentForm.controls['cardHolderName'].hasError('required')">Name on Card is required</mat-error>
-      </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Credit Card Number</mat-label>
-        <input matInput formControlName="cardNumber" required>
-        <mat-error *ngIf="paymentForm.controls['cardNumber'].hasError('required')">Credit Card Number is required</mat-error>
-      </mat-form-field>
-      <div class="expiration-date">
-        <mat-form-field appearance="fill" class="month">
-          <mat-label>Expiration Month</mat-label>
-          <input matInput formControlName="expirationMonth" required>
-          <mat-error *ngIf="paymentForm.controls['expirationMonth'].hasError('required')">Expiration Month is required</mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="fill" class="year">
-          <mat-label>Expiration Year</mat-label>
-          <input matInput formControlName="expirationYear" required>
-          <mat-error *ngIf="paymentForm.controls['expirationYear'].hasError('required')">Expiration Year is required</mat-error>
-        </mat-form-field>
+<div class="wrapper">
+  <h2>Payment Infomration</h2>
+  <form (ngSubmit)="submitForm()">
+      <h4>Account</h4>
+      <div class="input-group">
+          <div class="input-box">
+              <input type="text" placeholder="Full Name" required class="name">
+              <i class="fa fa-user icon"></i>
+          </div>
+          <div class="input-box">
+              <input type="text" placeholder="Nick Name" required class="name">
+              <i class="fa fa-user icon"></i>
+          </div>
       </div>
-      <mat-form-field appearance="fill">
-        <mat-label>CVV</mat-label>
-        <input matInput formControlName="cvv" required>
-        <mat-error *ngIf="paymentForm.controls['cvv'].hasError('required')">CVV is required</mat-error>
-      </mat-form-field>
-      <button mat-raised-button color="primary" type="submit" [disabled]="paymentForm.invalid">Pay</button>
-    </form>
-  </div>
+      <div class="input-group">
+          <div class="input-box">
+              <input type="email" placeholder="Email Adress" required class="name">
+              <i class="fa fa-envelope icon"></i>
+          </div>
+      </div>
+      <div class="input-group">
+          <div class="input-box">
+              <h4> Date of Birth</h4>
+              <input type="text" placeholder="DD" class="dob">
+              <input type="text" placeholder="MM" class="dob">
+              <input type="text" placeholder="YYYY" class="dob">
+          </div>
+          <div class="input-box">
+              <h4> Gender</h4>
+              <input type="radio" id="b1" name="gendar" checked class="radio">
+              <label for="b1">Male</label>
+              <input type="radio" id="b2" name="gendar" class="radio">
+              <label for="b2">Female</label>
+          </div>
+      </div>
+      <div class="input-group">
+          <div class="input-box">
+              <h4>Payment Details</h4>
+              <input type="radio" name="pay" id="bc1" checked class="radio">
+              <label for="bc1"><span><i class="fa fa-cc-visa"></i> Credit Card</span></label>
+              <input type="radio" name="pay" id="bc2" class="radio">
+              <label for="bc2"><span><i class="fa fa-cc-paypal"></i> Paypal</span></label>
+          </div>
+      </div>
+      <div class="input-group">
+          <div class="input-box">
+              <input type="tel" placeholder="Card Number(0000-0000-0000-0000)" required class="name" 
+    pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}" title="Please enter card number in format 0000-0000-0000-0000">
+              <i class="fa fa-credit-card icon"></i>
+          </div>
+      </div>
+      <div class="input-group">
+          <div class="input-box">
+              <input type="password" placeholder="Card CVC" required class="name" maxlength="3">
+              <i class="fa fa-user icon"></i>
+          </div>
+          <div class="input-box">
+              <select>
+                  <option>dec</option>
+                  <option>jan</option>
+                  <option>feb</option>
+              </select>
+              <select>
+                  <option>2022</option>
+                  <option>2023</option>
+                  <option>2024</option>
+              </select>
+          </div>
+      </div>
+      <div class="input-group">
+          <div class="input-box">
+              <button type="submit" name="placeorder">PAY NOW</button>
+          </div>
+      </div>
+  </form>
+</div>

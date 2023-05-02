@@ -3,6 +3,7 @@ import { AuthenticationService } from '../core/services/authentication.service';
 import { User } from '../login/users';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { SellerProfile } from '../model/SellerProfile';
 
 @Component({
   selector: 'app-user-info',
@@ -10,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./user-info.component.scss']
 })
 export class UserInfoComponent implements OnInit {
-  user!: User;
+  sellerProfile!: SellerProfile;
   userIdRoute: string | null = "";
   reviews = [
     { title: 'Amazing food!', description: 'Chef John Doe made the best pasta I have ever tasted. The sauce was perfectly balanced and the pasta was cooked al dente.', rating: 5 },
@@ -30,7 +31,7 @@ export class UserInfoComponent implements OnInit {
     });
   }
   getCompleteUserProfile() {
-    this.authenticationService.getById(this.userIdRoute ? this.userIdRoute : "" ).subscribe(data => (this.user = data))
+    this.authenticationService.getsellerProfile(this.userIdRoute ? this.userIdRoute : "" ).subscribe(data => (this.sellerProfile = data))
   }
 
 }

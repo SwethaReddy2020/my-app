@@ -71,7 +71,6 @@ export class AddMenuComponent implements OnInit {
     const dateTime = new Date(dateValue.getTime() + (parseFloat(timeValue)  * 3600000));
     this.menuForm.get("userId")?.setValue(this.user?.userId);
     this.menuForm.get("availabilityTime")?.setValue(dateTime);
-    this.menuForm.get("menuImage")?.setValue(dateTime);
     if (this.menuForm.invalid) {
       return
     }

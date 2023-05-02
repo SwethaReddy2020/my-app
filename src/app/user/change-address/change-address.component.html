@@ -1,72 +1,20 @@
-<form [formGroup]="form">  
-    <div fxLayout="row">
-  
-      <div fxFlex="40%" fxFlex.md="60%" fxFlex.sm="50%" fxFlex.xs="100%">
-       <p> <mat-form-field>
-            <input
-              type="text"
-              matInput
-              formControlName="addressLine1"
-              placeholder="Address Line1"
-            />
-            <mat-error
-              *ngIf="
-              form.get('addressLine1')?.hasError('required')
-              "
-            >
-              Address Line1 is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-        </p> <p>
-          <mat-form-field>
-            <input
-              type="text"
-              matInput
-              formControlName="addressLine2"
-              placeholder="Address Line2"
-            />
-          </mat-form-field>
-        </p> <p>
-          <mat-form-field>
-            <input
-              type="text"
-              matInput
-              formControlName="city"
-              placeholder="City"
-            />
-          </mat-form-field>
-        </p> <p>
-          <mat-form-field>
-            <input
-              type="text"
-              matInput
-              formControlName="state"
-              placeholder="State"
-            />
-          </mat-form-field>
-        </p> <p>
-          <mat-form-field>
-            <input
-              type="text"
-              matInput
-              formControlName="country"
-              placeholder="Country"
-            />
-          </mat-form-field>
-        </p> <p>
-          <mat-form-field>
-            <input
-              type="text"
-              matInput
-              formControlName="zipCode"
-              placeholder="Pin Codes"
-            />
-          </mat-form-field>
-        </p>
-        <button mat-raised-button color="primary" [disabled]="form.invalid || disableSubmit" (click)="updateAddress()">Save</button>
-  
-      </div>
-  
-    </div>
-  
-  </form>
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill" class="full-width" >
+          <mat-label>About Me</mat-label>
+          <textarea matInput formControlName="about" required></textarea>
+          <mat-error *ngIf="form.controls['about'].hasError('required')">User Id is required</mat-error>
+        </mat-form-field>
+ 
+   
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Location</mat-label>
+        <input matInput formControlName="location" required>
+        <mat-error *ngIf="form.controls['location'].hasError('required')">Location is required</mat-error>
+      </mat-form-field>
+      
+      <button mat-raised-button color="accent" type="submit">Create Profile</button>
+    </form>
+  </mat-card-content>
+</mat-card>

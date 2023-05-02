@@ -1,5 +1,6 @@
 import { Category } from "./Category";
 import { Item } from "./Item";
+import { SellerProfile } from "./SellerProfile";
 
 export class Menu {
       menuId?: string;
@@ -16,4 +17,5 @@ export class Menu {
       menuImage?: string;
       item?: Item;
       category?: Category;
+      sellerProfile?: SellerProfile;
 }
