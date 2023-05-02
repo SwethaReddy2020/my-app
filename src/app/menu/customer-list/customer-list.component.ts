@@ -23,7 +23,7 @@ export class CustomerListComponent implements OnInit {
   ngOnInit() {
     this.user = this.authService.getCurrentUser();
     if(this.user) {
-    this.orderService.getMyOrders(this.user?.userId).subscribe((data: OrderSummary[]) => {
+    this.orderService.getRecivedOrder(this.user?.userId).subscribe((data: OrderSummary[]) => {
       this.orders = data;
     }); }
     else {

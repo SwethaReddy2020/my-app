@@ -9,7 +9,7 @@
           <p mat-card-subtitle class="category">{{ menu.category?.categoryName  }}</p>
         </div>
         <div class="col">
-          <p class="menu-price">Price: {{ menu.price }}</p>
+          <p class="menu-price">Price: {{ menu.price | currency: 'GBP' : 'symbol'}}</p>
         </div>  
       </div>
       <p class="menu-description">{{ menu.item?.itemDescription }}</p>

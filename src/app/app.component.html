@@ -97,13 +97,14 @@
          </button>
           <p matListItemTitle> Dashboard </p>
         </a>
-        <a mat-list-item [routerLink]="['/admin']" routerLinkActive="active">
+        <span *ngIf="user?.adminUser === 1">
+        <a  mat-list-item [routerLink]="['/admin']" routerLinkActive="active">
           <button mat-icon-button  matListItemMeta>
             <mat-icon color="accent"> people</mat-icon>
          </button>
           <p matListItemTitle> Admin </p>
         </a>
-
+      </span>
         <a mat-list-item [routerLink]="['/myaccount']"  routerLinkActive="active">
           <button mat-icon-button  matListItemMeta>
             <mat-icon color="accent"> person</mat-icon>

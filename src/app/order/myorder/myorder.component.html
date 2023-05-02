@@ -27,9 +27,9 @@
                                     </div>
                                 </td>
                                 <td style="font-size:14px;">
-                                    {{order.total}}</td>
+                                    {{order.total | currency: 'GBP' : 'symbol'}}</td>
                                 <td>
-                                    {{order.orderDateTime}}
+                                    {{order.orderDateTime | date: 'short'}}
                                 </td>
                                 <td>{{order.paymentStatus}}</td>
                                 <td>{{order.orderStatus}}</td>

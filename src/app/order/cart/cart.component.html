@@ -15,7 +15,7 @@
       <tbody>
         <tr *ngFor="let item of cartItems">
           <td>{{ item.name }}</td>
-          <td>{{ item.price | currency }}</td>
+          <td>{{ item.price | currency: 'GBP' : 'symbol' }}</td>
           <td>
             <button mat-icon-button color="primary" (click)="decrementQuantity(item)" [disabled]="item.quantity <= 1">
               <mat-icon>remove_circle_outline</mat-icon>
@@ -25,7 +25,7 @@
               <mat-icon>add_circle_outline</mat-icon>
             </button>
           </td>
-          <td>{{ item.price * item.quantity | currency }}</td>
+          <td>{{ item.price * item.quantity | currency: 'GBP' : 'symbol' }}</td>
           <td>
             <button mat-raised-button color="primary" (click)="removeItem(item)">Remove</button>
           </td>
@@ -34,17 +34,17 @@
       <tfoot>
         <tr>
           <td colspan="3">Subtotal</td>
-          <td>{{ getSubtotal() | currency }}</td>
+          <td>{{ getSubtotal() | currency: 'GBP' : 'symbol' }}</td>
           <td></td>
         </tr>
         <tr>
           <td colspan="3">Tax</td>
-          <td>{{ getTax() | currency }}</td>
+          <td>{{ getTax() | currency: 'GBP' : 'symbol' }}</td>
           <td></td>
         </tr>
         <tr>
           <td colspan="3">Total</td>
-          <td>{{ getTotal() | currency }}</td>
+          <td>{{ getTotal() | currency: 'GBP' : 'symbol' }}</td>
           <td></td>
         </tr>
       </tfoot>

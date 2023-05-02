@@ -1,3 +1,5 @@
+import { User } from "../login/users";
+
 export class OrderSummary {
     orderId?: string;
     orderDateTime?: string;
@@ -7,5 +9,5 @@ export class OrderSummary {
     userId?: string;
     comment?: string;
     rating?: string;
-    
+    customer?: User;
 }
