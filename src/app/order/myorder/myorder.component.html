@@ -31,15 +31,20 @@
                                 <td>
                                     {{order.orderDateTime | date: 'short'}}
                                 </td>
-                                <td>{{order.paymentStatus}}</td>
                                 <td>{{order.orderStatus}}</td>
+                                <td>{{order.paymentStatus}}</td>
                                 <td><div *ngIf="order.comment">
                                     {{order.comment}}
                                 </div> 
-                                    <div *ngIf="!order.comment"> <button (click)="openDialog(order.orderId)">feedback</button></div>
+                                    <div *ngIf="!order.comment"> <button  mat-raised-button color="accent" (click)="openDialog(order.orderId)">feedback</button></div>
                                 </td>
                                 <td>
-                                    {{order.rating}}
+                                    <div *ngIf="order.rating" class="stars">
+                                        <i class="bi bi-star-fill" *ngFor="let i of arrayFromNumber(order.rating)"></i>
+    
+                                        <i class="bi bi-star" *ngFor="let i of arrayFromNum(getNotFilledCount(order.rating))"></i>
+                                      </div>
+                                
                                 </td>
                             </tr>
                         </tbody>

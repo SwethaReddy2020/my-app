@@ -22,7 +22,8 @@ export class LoginComponent implements OnInit {
       private titleService: Title,
       private alertService: AlertService,
       private formBuilder: FormBuilder,
-      private authenticationService: AuthenticationService) {
+      private authenticationService: AuthenticationService,
+      private notificationService: NotificationService) {
   }
 
   ngOnInit() {
@@ -59,6 +60,7 @@ export class LoginComponent implements OnInit {
                   this.router.navigateByUrl(returnUrl);
               },
               error: error => {
+                this.notificationService.openSnackBar('Sorry unable to login!! Please create account if doesnt exsits')
                   this.alertService.error(error);
                   this.loading = false;
               }

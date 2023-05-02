@@ -50,4 +50,16 @@ export class MyorderComponent implements OnInit {
     });
   }
 
+  getNotFilledCount(filledCount: string) {
+    return 5 - parseInt(filledCount);
+  }
+
+  arrayFromNum(num: number): number[] {
+    return Array(num).fill(0).map((x, i) => i);
+  }
+  arrayFromNumber(num: string): number[] {
+    return Array(parseInt(num)).fill(0).map((x, i) => i);
+  }
+
+
 }

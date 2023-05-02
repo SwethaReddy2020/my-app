@@ -36,7 +36,7 @@
                               <td>{{order.orderStatus}}</td>
                               <td>{{order.paymentStatus}}</td>
                               <td><div *ngIf="order.orderStatus !== 'Complete'">
-                                  <button mat-raised-button color="accent" (click)="sendMessage(order.orderId)">Order Complete</button>
+                                  <button mat-raised-button color="accent" (click)="sendMessage(order.orderId)">Food ready for pickup</button>
                               </div> 
                               </td>
                           

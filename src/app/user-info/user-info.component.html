@@ -2,7 +2,7 @@
     <div *ngIf="sellerProfile">
     <mat-card>
         <mat-card-header>
-            <mat-card-title>{{sellerProfile.customer?.firstName}}{{sellerProfile.customer?.lastName}}</mat-card-title>
+            <mat-card-title class="ff-secondary">{{sellerProfile.customer?.firstName}}&nbsp;{{sellerProfile.customer?.lastName}}</mat-card-title>
         </mat-card-header>
         <mat-card-content>
             <div class="row mt-4 mb-4">
@@ -11,7 +11,7 @@
                 </div>
                 <div class="col profile-details">
                     <p><strong>Location:</strong> {{ sellerProfile.location }}</p>
-                    <p><strong>about :</strong> {{sellerProfile.about}}</p>
+                    <p><strong>About :</strong> {{sellerProfile.about}}</p>
                 </div>
             </div>
             
@@ -26,7 +26,7 @@
 
                 </div>
                 <div class="col-5">
-                    <h1 class="ff-secondary text-start" [routerLink]="['/menu/myMenu']" routerLinkActive="active">Order recived ordered 30 times</h1>
+                    <h1 class="ff-secondary text-start" [routerLink]="['/menu/myMenu']" routerLinkActive="active">Received food order {{reviewSummary.orderRecivedCount}} times till date  </h1>
                 </div>
                 <div class="col-1">
                     <button mat-fab color="accent" aria-label="food ordered">
@@ -40,7 +40,7 @@
 
                 </div>
                 <div class="col-5">
-                    <h1 class="ff-secondary text-start" [routerLink]="['/myorder']" routerLinkActive="active">Ordered 30 times</h1>
+                    <h1 class="ff-secondary text-start" [routerLink]="['/myorder']" routerLinkActive="active">Ordered food {{reviewSummary.orderCount}} times till date</h1>
                 </div>
             </div>
         </mat-card-content>

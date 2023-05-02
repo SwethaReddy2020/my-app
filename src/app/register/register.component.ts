@@ -65,12 +65,13 @@ export class RegisterComponent implements OnInit {
     this.authenticationService.regiserUser(this.registerForm.value).pipe(first())
     .subscribe({
         next: () => {
-            this.alertService.success('Registration successful', { keepAfterRouteChange: true });
-            //this.notificationService.openSnackBar('Registration successful')
+            //this.alertService.success('Registration successful', { keepAfterRouteChange: true });
+            this.notificationService.openSnackBar('Registration successful')
             this.router.navigate(['/login']);
+            this.loading = false;
         },
         error: error => {
-          
+          this.notificationService.openSnackBar('Some thing went wrong!!')
             this.alertService.error(error);
             this.loading = false;
         }
