@@ -25,20 +25,28 @@ export class MyorderComponent implements OnInit {
   ngOnInit() {
     this.user = this.authService.getCurrentUser();
     if(this.user) {
-    this.orderService.getMyOrders(this.user?.userId).subscribe((data: OrderSummary[]) => {
-      this.orders = data;
-    }); }
+      this.getMyOrder(this.user.userId);
+    }
     else {
       this.router.navigate(['/login']);
     }
   }
 
-  openDialog() {
+  getMyOrder(user : string) {
+    this.orderService.getMyOrders(user).subscribe((data: OrderSummary[]) => {
+      this.orders = data;
+    });
+  }
+
+  openDialog(orderId: string | undefined) {
     const dialogRef = this.dialog.open(FeedbackComponent);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result.data}`);
-      //this.menuService.addItem(result.data).subscribe();
+      this.orderService.addReviews(orderId ? orderId: "",result.data.comment, result.data.rating).subscribe(data =>{
+        if(this.user) {
+          this.getMyOrder(this.user.userId);
+        }
+      });
     });
   }
 

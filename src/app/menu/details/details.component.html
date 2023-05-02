@@ -16,7 +16,7 @@
           <div class="card-text menu-price m-4">Price: {{ menu.price }}</div>
           <div class="card-text mb-4 menu-description">{{ menu.item?.itemDescription }}</div>
           <div class="card-text mb-4 menu-description"> Ingredients : {{ menu.ingredients }}</div>
-          <div class="card-text mb-4 menu-description"> Seller : {{menu.sellerProfile?.customer?.firstName}} </div>
+          <div class="card-text mb-4 menu-description"> Seller : <a  [routerLink]="['/profile/', menu.sellerProfile?.profileId]"> {{menu.sellerProfile?.customer?.firstName}} </a> </div>
           <div class="m-4">
             <form [formGroup] = "cartForm">
             <mat-form-field>

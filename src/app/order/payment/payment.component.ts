@@ -40,10 +40,6 @@ export class PaymentComponent  implements OnInit {
 
   submitForm() {
     this.submitted = true;
-
-    if (this.paymentForm.invalid) {
-      return;
-    }
     this.user = this.authService.getCurrentUser();
     if(this.user) {
     this.orderService.placeOrder(this.user?.userId).subscribe((data: OrderSummary) => {
