@@ -49,9 +49,9 @@
         <span>Account</span>
       </a>
 
-      <a mat-menu-item [routerLink]="['/auth/login']">
+      <a mat-menu-item  (click)="logout()">
         <mat-icon>exit_to_app</mat-icon>
-        <span>Log out</span>
+        <span >Log out</span>
       </a>
 
     </mat-menu>
@@ -115,7 +115,7 @@
           <p matListItemTitle> About </p>
         </a>
 
-        <a mat-list-item [routerLink]="['/register']">
+        <a mat-list-item  (click)="logout()">
           <button mat-icon-button  matListItemMeta>
             <mat-icon color="accent"> exit_to_app</mat-icon>
            </button>

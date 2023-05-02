@@ -36,7 +36,7 @@
                                 <td><div *ngIf="order.comment">
                                     {{order.comment}}
                                 </div> 
-                                    <div *ngIf="!order.comment"> <a>Add feedback</a> </div>
+                                    <div *ngIf="!order.comment"> <button (click)="openDialog()">feedback</button></div>
                                 </td>
                                 <td>
                                     {{order.rating}}

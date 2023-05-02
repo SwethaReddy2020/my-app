@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef, OnDestroy, AfterViewInit } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { timer } from 'rxjs';
+import { interval, switchMap, timer } from 'rxjs';
 import { Subscription } from 'rxjs';
 
  import { AuthenticationService } from 'src/app/core/services/authentication.service';
@@ -49,13 +49,13 @@ ngOnInit(): void {
   this.authService.user.subscribe(x => this.user = x);
   this.cartService.cart.subscribe(c => this.cart = c);
   this.usernotifiyService.notity.subscribe(n => this.notifications = n);
- 
-
-  // Auto log-out subscription
- // const timer$ = timer(2000, 5000);
-  //this.autoLogoutSubscription = timer$.subscribe(() => {
-   //   this.authGuard.canActivate();
- // });
+  const source$ = interval(20000); // interval of 20 seconds
+  const http$ = source$.pipe(
+    switchMap(() => this.usernotifiyService.getNotification())
+  );
+  http$.subscribe(data => {
+    console.log(data);
+  });
 }
 
 ngOnDestroy(): void {
@@ -66,6 +66,10 @@ ngOnDestroy(): void {
 
 ngAfterViewInit(): void {
   this.changeDetectorRef.detectChanges();
+}
+
+logout(){
+  this.authService.logout();
 }
 
 }

@@ -1,6 +1,5 @@
 <div class="cart-main-area p">
   <div class="container">
-      <h3 class="page-title">Order History</h3>
       <div class="row">
           <div class="col-lg-12 col-md-12 col-sm-12 col-12">
               <div class="table-content table-responsive">
@@ -36,7 +35,7 @@
                               </td>
                               <td>{{order.paymentStatus}}</td>
                               <td>{{order.orderStatus}}</td>
-                              <td><div *ngIf="order.orderStatus === 'Complete'">
+                              <td><div *ngIf="order.orderStatus !== 'Complete'">
                                   <button mat-raised-button color="accent" (click)="sendMessage(order.orderId)">Order Complete</button>
                               </div> 
                               </td>

@@ -1,0 +1,39 @@
+.my-fab {
+    position: fixed !important;
+    bottom: 20px !important;
+    right: 20px !important;
+  }
+
+  .menu-card {
+    margin: 10px;
+  
+  
+    img {
+      height: 200px;
+      object-fit: cover;
+    }
+  
+    .menu-description {
+      white-space: pre-line;
+      margin-top: 10px;
+      font-size: 14px;
+      min-height: 35px;
+      max-height: 35px;
+    }
+  
+    .menu-price {
+      font-weight: bolder;
+      font-size: large;
+    }
+
+    .category {
+      font-size: larger;
+    font-style: oblique;
+    font-weight: bolder;
+    }
+    .title {
+    font-family: "Playfair Display";
+    letter-spacing: 6px;
+    font-weight: bolder;
+    }
+  }

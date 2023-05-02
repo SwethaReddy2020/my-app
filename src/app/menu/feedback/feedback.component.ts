@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { OrderService } from 'src/app/core/services/order.service';
 import { FeedbackFormData } from 'src/app/model/feedback';
+import { MyorderComponent } from 'src/app/order/myorder/myorder.component';
 
 @Component({
   selector: 'app-feedback',
@@ -13,7 +15,8 @@ export class FeedbackComponent implements OnInit {
  
 
   constructor(private fb: FormBuilder,
-  private orderService: OrderService) {}
+    @Inject(MAT_DIALOG_DATA) private data: string,
+    private dialogRef: MatDialogRef<MyorderComponent>) {}
 
   
   ngOnInit(): void {
@@ -28,7 +31,6 @@ setRating(value: number) {
 }
 
   add() {
-    // Submit the form data to your backend or store it locally
-    console.log();
+    this.dialogRef.close({data: {comment: "dsads", rating: 2}});
   }
 }
