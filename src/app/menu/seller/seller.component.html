@@ -1,0 +1,16 @@
+<div class="container">
+    Please Add New menu by clicking on the Add button in bottom right hand corner
+    <mat-tab-group>
+        <mat-tab label="Orders recived">
+            <app-customer-list></app-customer-list>
+        </mat-tab>
+        <mat-tab label="My Menu">
+            <app-seller-menu></app-seller-menu>
+        </mat-tab>
+    
+      </mat-tab-group>
+</div>
+
+<button mat-fab color="accent"  class="my-fab" aria-label="add menu icon"  [routerLink]="['/menu/add']" routerLinkActive="active">
+    <mat-icon>add</mat-icon>
+</button>

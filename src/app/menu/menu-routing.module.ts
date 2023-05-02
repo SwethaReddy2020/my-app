@@ -5,13 +5,14 @@ import { MenuListComponent } from './menu-list/menu-list.component';
 import { CustomerListComponent } from './customer-list/customer-list.component';
 import { AuthGuard } from '../core/guards/auth.guard';
 import { DetailsComponent } from './details/details.component';
+import { SellerComponent } from './seller/seller.component';
 
 
 const routes: Routes = [
   { path: 'add', component: AddMenuComponent,    canActivate: [AuthGuard] },
   { path: 'details/:menuId', component: DetailsComponent },
   { path: '', component: MenuListComponent },
-  { path: 'myMenu', component: CustomerListComponent,    canActivate: [AuthGuard] },
+  { path: 'myMenu', component: SellerComponent,    canActivate: [AuthGuard] },
 ];
 
 @NgModule({

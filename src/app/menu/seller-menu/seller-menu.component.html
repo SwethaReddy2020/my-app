@@ -1,0 +1,21 @@
+<div class="row row-cols-1 row-cols-md-2 g-4">
+    <div class="col"  *ngFor="let menu of menus">
+      <mat-card  class="menu-card" >
+        <div class="row g-0 mb-4">
+          <div class="col-md-4">
+            <img  [src]="menu.menuImage" class="img-fluid rounded-start" alt="menu image">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body ms-2">
+              <h3 class="card-title" class="title">{{ menu.item?.itemName }}</h3>
+              <p class="card-text category"><small class="text-muted">{{ menu.category?.categoryName  }}</small></p>
+              <p class="card-text menu-price"><small class="text-muted">Price: {{ menu.price }}</small></p>
+              <p class="card-text">{{ menu.item?.itemDescription }}</p>
+              <p class="card-text"><small class="text-muted">{{ menu.ingredients  }}</small></p>
+              <button mat-raised-button color="primary" [routerLink]="['/menu/details', menu.menuId]">View Details</button>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    </div>

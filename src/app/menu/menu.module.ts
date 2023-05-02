@@ -29,6 +29,8 @@ import { AddItemComponent } from './add-item/add-item.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DetailsComponent } from './details/details.component'
 import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
+import { SellerComponent } from './seller/seller.component';
+import { SellerMenuComponent } from './seller-menu/seller-menu.component';
 
 @NgModule({
   declarations: [ MenuListComponent,
@@ -36,7 +38,9 @@ import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
     FeedbackComponent,
     CustomerListComponent,
     AddItemComponent,
-    DetailsComponent],
+    DetailsComponent,
+    SellerComponent,
+    SellerMenuComponent],
   imports: [
     CommonModule,
     MenuRoutingModule,

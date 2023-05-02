@@ -54,22 +54,21 @@
                 <h1 class="mb-3">Feedback</h1>
             </div>
             <div class="row row-cols-1 row-cols-md-3 g-4" >
-                <div class="col" *ngFor="let review of reviews">
+                <div class="col" *ngFor="let review of reviewSummary.feedbackDTO">
                 <div class="card">
                 <div class="testimonial-item m-4">
                     <div class="testimonial-content">
                         <p>
                           <i class="bi bi-quote quote-icon-left"></i>
-                          {{review.description}}
+                          {{review.comment}}
                           <i class="bi bi-quote quote-icon-right"></i>
                         </p>
-                        <h3>Sara Wilsson</h3>
+                        <h3>{{review.userName}}</h3>
                         <div class="stars">
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star"></i>
+                            
+                          <i class="bi bi-star-fill" *ngFor="let i of arrayFromNumber(review.rating)"></i>
+                
+                          <i class="bi bi-star" *ngFor="let i of arrayFromNumber(getNotFilledCount(review.rating))"></i>
                         </div>
                       </div>
                   </div>

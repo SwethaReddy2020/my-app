@@ -1,6 +1,6 @@
 export interface FeedbackFormData {
-    name: string;
-    email: string;
-    feedback: string;
-    rating: number;
-  }
+  userName: string;
+  userId: string;
+  comment: string;
+  rating: number;
+}

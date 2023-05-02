@@ -34,17 +34,13 @@
                                 <td>{{order.paymentStatus}}</td>
                                 <td>{{order.orderStatus}}</td>
                                 <td><div *ngIf="order.comment">
-                                    <div class="card">
-                                        <div class="card-title">{{order.rating}}</div>
-                                        <div class="card-text">{{order.comment}}</div>
-                                    </div>
+                                    {{order.comment}}
                                 </div> 
                                     <div *ngIf="!order.comment"> <a>Add feedback</a> </div>
                                 </td>
                                 <td>
-                                    <div class="card">
-                                    <div class="card-title">{{order.rating}}</div>
-                                </div></td>
+                                    {{order.rating}}
+                                </td>
                             </tr>
                         </tbody>
                     </table>

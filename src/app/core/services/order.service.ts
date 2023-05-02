@@ -7,6 +7,7 @@ import { OrderSummary } from 'src/app/model/OrderSummary';
 import { OrderSummaryDetail } from 'src/app/model/OrderSummaryDetail';
 import { CartService } from './cart.service';
 import { OrderDetails } from 'src/app/model/orderDetail';
+import { FeedBackSumary } from 'src/app/model/FeedBackSumary';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +37,27 @@ export class OrderService {
    return cart.map( c => {
         const order = new OrderDetails(c.menuId, c.quantity, (c.price * c.quantity));
         return order;
-    }
-    );
+    });
   }
+
+
+  getReviews(userId: string) {
+    return this.http.get<FeedBackSumary>(`/api/order/feedback/summary?userId=${userId}`);
+  }
+
+  addReviews(orderId: string, message: string, rating: string) {
+    return this.http.get<OrderSummaryDetail>(`/api/order/feedback?orderId=${orderId}&message=${message}&rating=${rating}`);
+  }
+
+  sendOrderComplete(message: string, orderId: string, sellerId: string) {
+    return this.http.get<OrderSummary[]>(`/api/notifiy/send?orderId=${orderId}&message=${message}&sellerId=${sellerId}`);
+  }
+
+ 
+
+  getRecivedOrder(sellerId: string) {
+    return this.http.get<OrderSummary[]>(`/api/order/seller?sellerId=${sellerId}`);
+  }
+
+
 }

@@ -9,6 +9,8 @@ import { AuthGuard } from 'src/app/core/guards/auth.guard';
 import { User } from './login/users';
 import { CartItem } from './model/CartItem';
 import { CartService } from './core/services/cart.service';
+import { UsernotifiyService } from './core/services/usernotifiy.service';
+import { CustomNotification } from './model/Notification';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +25,7 @@ export class AppComponent  implements OnInit, OnDestroy, AfterViewInit  {
   mobileQuery: MediaQueryList;
   showSpinner: boolean = false;
  
+  notifications?: CustomNotification[] | null;
   user?: User | null;
   cart?: CartItem[] | null;
   
@@ -33,7 +36,7 @@ export class AppComponent  implements OnInit, OnDestroy, AfterViewInit  {
     public spinnerService: SpinnerService,
     private authService: AuthenticationService,
     private cartService: CartService,
-    private authGuard: AuthGuard) {
+   private usernotifiyService: UsernotifiyService) {
 
     this.mobileQuery = this.media.matchMedia('(max-width: 1000px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -45,6 +48,7 @@ ngOnInit(): void {
  // const user = this.authService.getCurrentUser();
   this.authService.user.subscribe(x => this.user = x);
   this.cartService.cart.subscribe(c => this.cart = c);
+  this.usernotifiyService.notity.subscribe(n => this.notifications = n);
  
 
   // Auto log-out subscription

@@ -1,26 +1,51 @@
-<div class="row row-cols-1 row-cols-md-2 g-4">
-<div class="col"  *ngFor="let menu of menus">
-  <mat-card  class="menu-card" >
-    <div class="row g-0 mb-4">
-      <div class="col-md-4">
-        <img  [src]="menu.menuImage" class="img-fluid rounded-start" alt="menu image">
-      </div>
-      <div class="col-md-8">
-        <div class="card-body ms-2">
-          <h3 class="card-title" class="title">{{ menu.item?.itemName }}</h3>
-          <p class="card-text category"><small class="text-muted">{{ menu.category?.categoryName  }}</small></p>
-          <p class="card-text menu-price"><small class="text-muted">Price: {{ menu.price }}</small></p>
-          <p class="card-text">{{ menu.item?.itemDescription }}</p>
-          <p class="card-text"><small class="text-muted">{{ menu.ingredients  }}</small></p>
-          <button mat-raised-button color="primary" [routerLink]="['/menu/details', menu.menuId]">View Details</button>
-        </div>
-      </div>
-    </div>
-  </mat-card>
-</div>
-</div>
+<div class="cart-main-area p">
+  <div class="container">
+      <h3 class="page-title">Order History</h3>
+      <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+              <div class="table-content table-responsive">
 
+                  <table>
+                      <thead>
+                          <tr>
+                              <th>Order No</th>
+                              <th>User</th>
+                              <th>Price</th>
+                              <th>Date</th>
+                              <th>Order Status</th>
+                              <th>Payment Status</th>
+                              <th></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr *ngFor="let order of orders">
+                              <td>
+                                  <div class="div_order_id">
+                                      <a [routerLink]="['/order', order.orderId]"
+                                          routerLinkActive="active">{{order.orderId}}
+                                      </a>
+                                  </div>
+                              </td>
+                              <td>
 
-<button mat-fab color="accent"  class="my-fab" aria-label="add menu icon"  [routerLink]="['/menu/add']" routerLinkActive="active">
-    <mat-icon>add</mat-icon>
-</button>
+                              </td>
+                              <td style="font-size:14px;">
+                                  {{order.total}}</td>
+                              <td>
+                                  {{order.orderDateTime}}
+                              </td>
+                              <td>{{order.paymentStatus}}</td>
+                              <td>{{order.orderStatus}}</td>
+                              <td><div *ngIf="order.orderStatus === 'Complete'">
+                                  <button mat-raised-button color="accent" (click)="sendMessage(order.orderId)">Order Complete</button>
+                              </div> 
+                              </td>
+                          
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
