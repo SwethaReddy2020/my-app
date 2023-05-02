@@ -23,6 +23,7 @@ export class AddMenuComponent implements OnInit {
   categories: Category[] = [];
   items: Item[] = [];
   user?: User;
+  fileName?: string;
 
   constructor(private fb: FormBuilder,
      private alertService: AlertService, 
@@ -51,7 +52,8 @@ export class AddMenuComponent implements OnInit {
       quantity: ['', Validators.required],
       sellingType: ['All', Validators.required],
       categoryId: ['', Validators.required],
-      menuImage: ['', Validators.required]
+      menuImage: ['',],
+      fileName: ['', Validators.required],
     });
   }
 
@@ -65,9 +67,12 @@ export class AddMenuComponent implements OnInit {
   }
 
   submitForm() {
+    const file = this.menuForm.get("fileName")?.value;
+    this.fileName = file.replace("C:\\fakepath\\", "assets/images/");
+    this.menuForm.get("menuImage")?.setValue(this.fileName);
+    console.log(this.fileName);
     const dateValue = this.menuForm.get('availableDate')?.value;
     const timeValue = this.menuForm.get('availableTime')?.value;
-    console.log(dateValue.getTime() + (parseFloat(timeValue) * 3600000));
     const dateTime = new Date(dateValue.getTime() + (parseFloat(timeValue)  * 3600000));
     this.menuForm.get("userId")?.setValue(this.user?.userId);
     this.menuForm.get("availabilityTime")?.setValue(dateTime);
@@ -91,4 +96,5 @@ export class AddMenuComponent implements OnInit {
         }
     });
   }
+
 }
